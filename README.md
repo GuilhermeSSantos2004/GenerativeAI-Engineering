@@ -135,6 +135,7 @@ GenerativeAI-Engineering/
 
 - [Como executar no Colab e no VS Code](docs/EXECUCAO.md)
 - [Metodologia e limitações](docs/METODOLOGIA.md)
+- [Resultados reais da Tesla T4 e auditoria das respostas](docs/RESULTADOS_REAIS.md)
 - [Checklist de entrega](docs/ENTREGA.md)
 - [Integrantes (verificar)](docs/GRUPO.md)
 - [Evidências e resultados](evidences/README.md)
