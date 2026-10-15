@@ -2,7 +2,7 @@
 
 **Projeto:** Python Debug LLM — Assistente de diagnóstico e correção de erros em Python
 
-**Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Grupo:** até 5 integrantes
+**Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Turma: 4ESPX**  |  **Grupo:** 5 integrantes
 
 > **Status:** implementação e dataset publicados; execução real dos experimentos com GPU e as capturas do VS Code ainda precisam ser realizadas. Este repositório não apresenta números fictícios como se fossem resultados.
 
