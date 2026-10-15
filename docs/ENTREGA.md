@@ -10,7 +10,7 @@ Este checklist foi atualizado após a execução real no Google Colab em 15/10/2
 | Testar parâmetros | experimentos A/B | Concluído, ranks/LR/épocas registrados |
 | Avaliar respostas | `src/evaluate.py` | Concluído (16 casos cada); JSON completo no pacote |
 | Testes com GPU | `require_gpu()` impede CPU | Tesla T4 confirmada em `evidences/gpu.json`; print nvidia-smi no VS Code ainda pendente |
-| Frontend | `src/ui.py` (Gradio) | Testado com prompts reais; prints recebidos, upload de PNGs pendente |
+| Frontend | `src/ui.py` (Gradio) | Testado com prompts reais; os oito prints originais estão publicados no GitHub |
 | Print da GPU no VS Code | instruções em `EXECUCAO.md` | **PENDENTE**: prints atuais são do navegador Colab |
 | Documentação e código no GitHub | README, docs, fontes, dataset, notebook | commit dos resultados |
 | Grupo de 4 a 5 pessoas | `docs/GRUPO.md` | Confirmados 5 integrantes, turma 4ESPX; conferir se RMs continuam iguais |
@@ -35,4 +35,4 @@ Este checklist foi atualizado após a execução real no Google Colab em 15/10/2
 - **Atenção:** no caso IndexError a solução sugerida usa nomes de variáveis inconsistentes, logo não é evidência de correção perfeita.
 - Print de CUDA no **VS Code**, como enunciado pede: **ainda não recebido**.
 
-O pacote dos PNGs renomeados e dos JSONs completos pode ser descompactado e enviado pelo integrante ao repositório. O caminho previsto é `evidences/screenshots/`. Veja [o inventário das evidências](../evidences/README.md). Não informe que os PNGs estão no GitHub até completar o upload.
+Os **oito PNGs originais foram publicados e verificados** em [`evidences/screenshots/`](../evidences/screenshots/) por meio do commit [`0a219b1`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/0a219b14d44284f2505dfc754eb241b1016ec0ab). Os JSONs completos de respostas do ZIP original devem ser mantidos para auditoria, caso não tenham sido publicados ainda. Veja [o inventário das evidências](../evidences/README.md).
