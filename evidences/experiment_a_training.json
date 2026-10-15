@@ -1,0 +1,15 @@
+{
+  "date_utc": "2026-10-15T21:50:59.295370+00:00",
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "adapter_path": "outputs/experiment_a/final_adapter",
+  "gpu": "Tesla T4",
+  "cuda_version": "13.0",
+  "torch_version": "2.11.0+cu130",
+  "train_examples": 96,
+  "val_examples": 16,
+  "config": {"train_file":"data/train.jsonl","val_file":"data/val.jsonl","output_dir":"outputs/experiment_a","learning_rate":0.0002,"epochs":2.0,"batch_size":2,"grad_accum":4,"lora_r":8,"max_length":384,"max_steps":-1,"seed":42},
+  "train_metrics": {"train_runtime":53.8552,"train_samples_per_second":3.565,"train_steps_per_second":0.446,"total_flos":99471063825408.0,"train_loss":0.8139709035555521,"epoch":2.0},
+  "val_metrics": {"eval_loss":0.6999666690826416,"eval_runtime":2.0732,"eval_samples_per_second":7.718,"eval_steps_per_second":3.859,"epoch":2.0},
+  "elapsed_seconds":56.87,
+  "max_gpu_memory_gb":3.613
+}
