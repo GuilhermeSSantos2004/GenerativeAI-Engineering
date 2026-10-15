@@ -10,9 +10,9 @@
 
 A análise das saídas do ZIP está registrada em [docs/RESULTADOS_REAIS.md](../docs/RESULTADOS_REAIS.md). Não confunda métricas automáticas baseadas em palavras-chave com taxa de acertos de código.
 
-## Capturas reais recebidas e organizadas para publicação
+## Capturas reais publicadas e verificadas no GitHub
 
-O estudante enviou os seguintes prints em 15/10/2026. Foram incluídos no pacote `CP2_CP3_evidencias_GitHub_4ESPX.zip` para copiar a pasta `evidences/screenshots/` para este repositório, sem alteração do conteúdo das imagens:
+O estudante enviou os seguintes prints em 15/10/2026 e os oito arquivos PNG **originais** foram publicados em [`evidences/screenshots/`](screenshots/) no commit [`0a219b1`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/0a219b14d44284f2505dfc754eb241b1016ec0ab). Cada arquivo foi conferido diretamente na API do GitHub, com o mesmo tamanho em bytes do arquivo recebido:
 
 | Arquivo | Conteúdo | Análise |
 |---|---|---|
@@ -25,7 +25,7 @@ O estudante enviou os seguintes prints em 15/10/2026. Foram incluídos no pacote
 | `screenshots/07_treinamento_lora_B_t4.png` | Treinamento B finalizado, Tesla T4 no painel | Returncode 0 |
 | `screenshots/08_frontend_prompt_adicional.png` | Teste complementar no Gradio | Demonstra interface em operação |
 
-**Importante:** esta tabela documenta a coleção recebida; os arquivos PNG ainda precisam ser enviados ao GitHub a partir do pacote, a menos que os links individuais já existam. Não diga que um print está publicado só por constar na tabela.
+**Conferência:** os oito links acima estão disponíveis no GitHub e foram associados aos arquivos enviados pelo grupo. Os screenshots do navegador não foram rotulados como capturas do VS Code. Não diga que um print está publicado só por constar na tabela.
 
 ## Pendências frente ao professor
 
@@ -34,10 +34,17 @@ O estudante enviou os seguintes prints em 15/10/2026. Foram incluídos no pacote
 - [x] Frontend Gradio com respostas registradas em prints.
 - [x] Grupo de 5 integrantes, turma 4ESPX, em `docs/GRUPO.md`.
 - [ ] **Print da GPU efetivamente dentro do VS Code**. Os prints atuais são do Google Colab no navegador, não substituem o requisito literal.
-- [ ] Publicar PNGs `screenshots/` e os JSON detalhados das 16 respostas por variante a partir do pacote entregue.
+- [x] Publicar os oito PNGs originais em `screenshots/`.
+- [ ] Publicar os JSON detalhados das 16 respostas por variante a partir do pacote entregue (métricas agregadas já publicadas).
 
-## Publicação dos arquivos binários
+## Galeria visual dos prints enviados
 
-Descompactar `CP2_CP3_evidencias_GitHub_4ESPX.zip`, copiar sua pasta `evidences/` para o repositório local e enviar via `git add evidences/ && git commit -m "docs: add real Colab GPU screenshots and evaluations" && git push`. É possível também usar o botão **Add file > Upload files** na pasta do GitHub com os arquivos descompactados.
+![Comparação dos modelos com Tesla T4](screenshots/01_colab_comparacao_e_gpu_t4.png)
 
-Não publicar os pesos-base do modelo nem afirmar que os prints no navegador são capturas de dentro do VS Code.
+![Frontend para correção de erros Python](screenshots/02_frontend_nameerror.png)
+
+![Treinamento LoRA A finalizado](screenshots/06_treinamento_lora_A_t4.png)
+
+![Treinamento LoRA B finalizado](screenshots/07_treinamento_lora_B_t4.png)
+
+**Não publicar os pesos-base do modelo nem afirmar que os prints no navegador são capturas de dentro do VS Code.**
