@@ -1,6 +1,7 @@
-# Integrantes do grupo
+# Equipe — CP2/CP3 Generative AI for Engineering
 
-**Equipe de referência de atividades anteriores — conferir se são os mesmos participantes desta disciplina antes de entregar.**
+**Turma: 4ESPX**  
+**Integrantes: 5 alunos** (conforme requisito de grupo de 4 a 5).
 
 | Integrante | RM |
 |---|---|
@@ -10,6 +11,4 @@
 | Danilo | 99465 |
 | Laura | 98747 |
 
-Quantidade listada: **5 integrantes** (dentro do requisito de 4 a 5).
-
-> Importante: confirmar nomes completos, turma e participação específica no CP2/CP3; a equipe acima veio de projetos acadêmicos anteriores e não foi confirmada para esta entrega.
+Os cinco integrantes foram confirmados para este CP2/CP3. Os RMs foram reaproveitados das atividades anteriores do grupo; devem ser conferidos antes da entrega caso exista alguma alteração de matrícula. Nomes completos não informados permanecem como nomes conhecidos, sem completar sobrenomes por suposição.
