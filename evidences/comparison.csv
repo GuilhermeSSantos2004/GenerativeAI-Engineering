@@ -1,0 +1,4 @@
+run,variant,gpu,sample_count,format_rate,keyword_recall,full_keyword_rate
+baseline,baseline,Tesla T4,16,0.4375,0.75,0.5625
+experiment_a,fine_tuned,Tesla T4,16,1.0,0.6875,0.5
+experiment_b,fine_tuned,Tesla T4,16,1.0,0.75,0.625
