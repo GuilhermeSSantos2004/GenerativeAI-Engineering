@@ -4,7 +4,7 @@
 
 **Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Turma: 4ESPX**  |  **Grupo:** 5 integrantes
 
-> **Status atualizado em 15/10/2026:** fine-tuning LoRA A/B, baseline e inferências **executados realmente na GPU Tesla T4 do Google Colab**; métricas e gráfico publicados em `evidences/`. Capturas no navegador Gradio/Colab foram recebidas e organizadas para upload. **A captura da GPU dentro do VS Code ainda não foi enviada.** Não há métricas fictícias.
+> **Status atualizado em 15/10/2026:** fine-tuning LoRA A/B, baseline e inferências **executados realmente na GPU Tesla T4 do Google Colab**; métricas e gráfico publicados em `evidences/`. Oito capturas reais do navegador Colab/Gradio foram **publicadas no GitHub**, em `evidences/screenshots/`. **A captura da GPU dentro do VS Code ainda não foi enviada.** Não há métricas fictícias.
 
 ## Execute o projeto no Google Colab (GPU gratuita)
 
@@ -128,6 +128,18 @@ GenerativeAI-Engineering/
 
 **Limitações:** os valores representam métricas textuais auxiliares calculadas sobre **16 testes sintéticos reservados**, não acerto semântico. As capturas Gradio também identificaram correções incorretas em certos casos (especialmente IndexError). [Análise técnica e erros observados](docs/RESULTADOS_REAIS.md) · [GPU real](evidences/gpu.json) · [Métricas por teste](evidences/per_case_scores.csv) · [Treinamento A](evidences/experiment_a_training.json) · [Treinamento B](evidences/experiment_b_training.json).
 
+## Capturas reais de execução e frontend
+
+As **8 imagens PNG originais** enviadas pelo grupo estão organizadas em [evidences/screenshots/](evidences/screenshots/) e descritas no [índice das evidências](evidences/README.md). Algumas correções sugeridas pela LLM são imperfeitas; isso está documentado na avaliação qualitativa.
+
+| Execução dos experimentos em GPU Tesla T4 | Frontend Gradio com prompt e resposta |
+|---|---|
+| ![Comparação no Colab e painel Tesla T4](evidences/screenshots/01_colab_comparacao_e_gpu_t4.png) | ![Gradio respondendo ao teste NameError](evidences/screenshots/02_frontend_nameerror.png) |
+
+Também existem prints dos treinamentos A/B concluídos, dos erros IndexError, ZeroDivisionError e ValueError, e de um teste complementar.
+
+**Pendência literal do enunciado:** a captura da GPU **dentro do VS Code** ainda não foi apresentada. Os prints com Colab aberto no navegador demonstram GPU, mas não substituem esse requisito.
+
 ## Correspondência com os itens da atividade
 
 | Exigência | Arquivo/solução | Situação |
@@ -138,9 +150,9 @@ GenerativeAI-Engineering/
 | Testar diferentes parâmetros | Experimentos A/B | **Executados**, parâmetros e losses registrados |
 | Avaliar respostas | `src/evaluate.py`, `src/report.py` | **Executado** em 16 testes; erros qualitativos reconhecidos |
 | Realizar testes usando GPU | `scripts/check_gpu.py`, verificações CUDA | **Executado** na T4; `evidences/gpu.json` |
-| Criar frontend para prompts | `src/ui.py` (Gradio) | **Executado**; screenshots recebidos, aguardando upload binário |
+| Criar frontend para prompts | `src/ui.py` (Gradio) | **Executado**; screenshots originais publicados em `evidences/screenshots/` |
 | Capturar GPU no VS Code | [Guia de execução](docs/EXECUCAO.md) | Pendente de print real |
-| Documentar código no GitHub | README, docs, fontes, notebooks e dataset | Publicado; complementação das imagens pendente |
+| Documentar código no GitHub | README, docs, fontes, notebooks e dataset | **Publicado, incluindo os oito PNGs recebidos** |
 | Grupo 4–5 pessoas | [Integrantes confirmados](docs/GRUPO.md) | **5 pessoas confirmadas, turma 4ESPX** |
 
 ## Documentação e evidências
@@ -152,4 +164,4 @@ GenerativeAI-Engineering/
 - [Integrantes (verificar)](docs/GRUPO.md)
 - [Evidências e resultados](evidences/README.md)
 
-Para concluir, adicione ao GitHub os arquivos gerados em `evidences/` e prints reais (GPU, treino A/B, avaliação e interface). **Não invente outputs ou estatísticas.**
+Os oito prints originais, métricas e gráficos já estão publicados. Ainda faltam, se necessários para a conferência integral, os JSONs completos das respostas e a captura solicitada **dentro do VS Code**. **Não invente outputs ou estatísticas.**
