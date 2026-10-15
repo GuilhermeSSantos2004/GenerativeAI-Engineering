@@ -1,0 +1,10 @@
+# PyTorch com CUDA já está disponível nos runtimes GPU do Google Colab.
+# Para instalação local, instale a distribuição do PyTorch adequada à GPU antes.
+transformers==4.51.3
+peft==0.15.2
+accelerate==1.6.0
+gradio==5.25.2
+matplotlib>=3.8,<4
+pandas>=2.0,<3
+safetensors>=0.4.3
+pytest>=8,<10
