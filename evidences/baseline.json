@@ -1,0 +1,327 @@
+{
+  "date_utc": "2026-10-15T21:49:47.406559+00:00",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "variant": "baseline",
+  "adapter": null,
+  "gpu": "Tesla T4",
+  "temperature": 0.0,
+  "sample_count": 16,
+  "format_rate": 0.4375,
+  "keyword_recall": 0.75,
+  "full_keyword_rate": 0.5625,
+  "mean_latency_seconds": 3.162,
+  "category_keyword_recall": {
+    "AttributeError": 1.0,
+    "FileNotFoundError": 1.0,
+    "IndentationError": 1.0,
+    "IndexError": 1.0,
+    "KeyError": 0.5,
+    "ModuleNotFoundError": 1.0,
+    "NameError": 0.5,
+    "NameError_function": 1.0,
+    "SyntaxError": 0.5,
+    "TypeError_None": 1.0,
+    "TypeError_concat": 0.5,
+    "TypeError_missing_arg": 0.0,
+    "TypeError_not_iterable": 0.5,
+    "UnboundLocalError": 0.5,
+    "ValueError": 1.0,
+    "ZeroDivisionError": 1.0
+  },
+  "methodology": "Métricas automáticas auxiliares: taxa de formato e presença de palavras-chave; não medem correção semântica completa. Avaliadores devem inspecionar as respostas geradas.",
+  "examples": [
+    {
+      "id": "NameError-7",
+      "category": "NameError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nprint(total_7)\n```\nErro observado: NameError: name 'total_7' is not defined\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: a variável total_7 foi usada antes de ser definida.\nCorreção: defina total_7 antes da chamada de print.\nCódigo corrigido:\n```python\ntotal_7 = 17\nprint(total_7)\n```",
+      "expected_keywords": [
+        "variavel",
+        "defin"
+      ],
+      "generated_answer": "Causa: O nome \"total_7\" não foi definido antes da chamada ao método print.\n\nCorreção:\n\n```python\ndef total_7():\n    return 7\n\nprint(total_7())\n```\n\nEste código define uma função chamada `total_7` que retorna o valor 7. Depois, chama essa função para imprimir o resultado.",
+      "latency_seconds": 3.289,
+      "format_ok": false,
+      "keyword_recall": 0.5,
+      "all_keywords": false,
+      "keyword_hits": [
+        "defin"
+      ]
+    },
+    {
+      "id": "TypeError_concat-7",
+      "category": "TypeError_concat",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nidade_7 = 27\nprint(\"Idade: \" + idade_7)\n```\nErro observado: TypeError: can only concatenate str (not \"int\") to str\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o operador + não concatena diretamente string com inteiro.\nCorreção: converta o inteiro para string ou use f-string.\nCódigo corrigido:\n```python\nidade_7 = 27\nprint(f\"Idade: {idade_7}\")\n```",
+      "expected_keywords": [
+        "string",
+        "inteiro"
+      ],
+      "generated_answer": "Causa: O erro ocorre porque as variáveis `idade_7` e `idade_10` são convertidas para inteiros antes de serem concatenadas.\n\nCorreção:\n\n```python\nidade_10 = 35\nidade_7 = 27\nprint(f\"Idade: {idade_7}\")\nprint(f\"Idade: {idade_10}\")\n```\n\nCódigo corrigido:\n\n```python\nidade_10 = 35\nidade_7 = 27\nprint(f\"Idade: {idade_7}\")\nprint(f\"Idade: {idade_10}\")\n```",
+      "latency_seconds": 3.483,
+      "format_ok": true,
+      "keyword_recall": 0.5,
+      "all_keywords": false,
+      "keyword_hits": [
+        "inteiro"
+      ]
+    },
+    {
+      "id": "ZeroDivisionError-7",
+      "category": "ZeroDivisionError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\ntotal = 107\ndivisor = 0\nprint(total / divisor)\n```\nErro observado: ZeroDivisionError: division by zero\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o divisor vale zero, e divisão por zero é inválida.\nCorreção: verifique se o divisor é diferente de zero antes da divisão.\nCódigo corrigido:\n```python\ntotal = 107\ndivisor = 0\nif divisor != 0:\n    print(total / divisor)\nelse:\n    print(\"Divisão indisponível\")\n```",
+      "expected_keywords": [
+        "zero",
+        "divisor"
+      ],
+      "generated_answer": "Causa: Divisão por zero ocorreu porque o divisor (0) foi usado na divisão.\n\nCorreção:\n\n```python\ntotal = 107\ndivisor = 0\nif divisor != 0:\n    print(total / divisor)\nelse:\n    print(\"Divisor cannot be zero.\")\n```\n\nEste código verifica se o divisor é diferente de zero antes de realizar a divisão, garantindo que o programa não execute com exceções desnecessárias.",
+      "latency_seconds": 2.489,
+      "format_ok": false,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "zero",
+        "divisor"
+      ]
+    },
+    {
+      "id": "IndexError-7",
+      "category": "IndexError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nnumeros = [8, 9, 10]\nprint(numeros[11])\n```\nErro observado: IndexError: list index out of range\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o índice solicitado ultrapassa o tamanho da lista.\nCorreção: acesse um índice válido ou verifique o tamanho da lista.\nCódigo corrigido:\n```python\nnumeros = [8, 9, 10]\nprint(numeros[2])\n```",
+      "expected_keywords": [
+        "indice",
+        "lista"
+      ],
+      "generated_answer": "Causa: O índice 11 está fora do intervalo permitido (0 até 2).\nCorreção: A lista `numeros` tem tamanho 3, então o índice 11 está fora do esperado. Adicionei uma verificação para garantir que o índice seja válido antes da chamada ao método `print()`. Aqui está o código corrigido:\n\n```python\nnúmeros = [8, 9, 10]\nif len(numeros) > 11:\n    print(numeros[11])\nelse:\n    print(\"O índice 11 está fora do intervalo permitido.\")\n```",
+      "latency_seconds": 3.481,
+      "format_ok": true,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "indice",
+        "lista"
+      ]
+    },
+    {
+      "id": "KeyError-7",
+      "category": "KeyError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\npessoa = {\"nome\": \"Ana\", \"idade\": 27}\nprint(pessoa[\"email\"])\n```\nErro observado: KeyError: 'email'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: a chave email não existe no dicionário.\nCorreção: use get para obter a chave com valor padrão.\nCódigo corrigido:\n```python\npessoa = {\"nome\": \"Ana\", \"idade\": 27}\nprint(pessoa.get(\"email\", \"não informado\"))\n```",
+      "expected_keywords": [
+        "chave",
+        "dicionario"
+      ],
+      "generated_answer": "Causa: O nome \"email\" não existe na lista de dicionários da variável pessoa.\n\nCorreção:\n\n```python\npessoa = {\"nome\": \"Ana\", \"idade\": 27}\nprint(pessoa.get(\"email\"))\n```\n\nCódigo corrigido:\n\n```python\npessoa = {\"nome\": \"Ana\", \"idade\": 27}\nprint(pessoa.get(\"email\"))  # Verifica se o parâmetro \"email\" está presente no dicionário\n```",
+      "latency_seconds": 2.635,
+      "format_ok": true,
+      "keyword_recall": 0.5,
+      "all_keywords": false,
+      "keyword_hits": [
+        "dicionario"
+      ]
+    },
+    {
+      "id": "AttributeError-7",
+      "category": "AttributeError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\ntexto = None\nprint(texto.strip())  # caso 7\n```\nErro observado: AttributeError: 'NoneType' object has no attribute 'strip'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o objeto é None e não possui o método strip.\nCorreção: trate o valor None antes de chamar strip.\nCódigo corrigido:\n```python\ntexto = None\nprint(texto.strip() if texto is not None else \"\")\n```",
+      "expected_keywords": [
+        "none",
+        "strip"
+      ],
+      "generated_answer": "Causa: O método `strip()` está sendo usado para remover espaços da string `texto`, mas `texto` ainda pode ser `None`. Para evitar esse problema, você deve verificar se `texto` realmente contém algum conteúdo antes de tentar usar `strip()`.\nCorreção: \n```python\nif texto is not None:\n    print(texto.strip())\nelse:\n    print(\"Texto não foi fornecido.\")\n```\nEste código verifica se `texto` é `None` antes de tentar usar `strip()`, garantindo que o programa não execute se `texto` for `None`.",
+      "latency_seconds": 3.154,
+      "format_ok": false,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "none",
+        "strip"
+      ]
+    },
+    {
+      "id": "ValueError-7",
+      "category": "ValueError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nentrada = \"abc7\"\nnumero = int(entrada)\nprint(numero)\n```\nErro observado: ValueError: invalid literal for int() with base 10: 'abc7'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: a string não contém um inteiro válido.\nCorreção: valide a entrada e trate ValueError ao converter com int.\nCódigo corrigido:\n```python\nentrada = \"abc7\"\ntry:\n    print(int(entrada))\nexcept ValueError:\n    print(\"Informe um número inteiro válido\")\n```",
+      "expected_keywords": [
+        "int"
+      ],
+      "generated_answer": "Causa: O valor digitado para `entrada` é uma string que contém caracteres não numéricos (como 'abc'), então a função `int()` tenta converter essa string para um número inteiro, resultando em um erro.\n\nCorreção:\n\n```python\nentrada = input(\"Digite algo: \")\nnumero = int(entrada)\nprint(numero)\n```\n\nEste código solicita ao usuário que digite algo e armazena esse valor na variável `entrada`. Depois, ele converte essa string para um número inteiro usando `int()`, e finalmente imprime o resultado.",
+      "latency_seconds": 3.09,
+      "format_ok": false,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "int"
+      ]
+    },
+    {
+      "id": "SyntaxError-7",
+      "category": "SyntaxError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nnumero = 8\nif numero > 0\n    print(\"positivo\")\n```\nErro observado: SyntaxError: expected ':'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: faltam dois pontos após a condição if.\nCorreção: adicione dois pontos ao final do if.\nCódigo corrigido:\n```python\nnumero = 8\nif numero > 0:\n    print(\"positivo\")\n```",
+      "expected_keywords": [
+        "dois pontos",
+        "if"
+      ],
+      "generated_answer": "Causa: O erro ocorreu porque o código estava incorretamente formatado para ser interpretado por Python.\n\nCorreção:\n\n```python\nnumero = 8\nif numero > 0:\n    print(\"positivo\")\n```\n\nCódigo corrigido:\n\n```python\nnumero = 8\nif numero > 0:\n    print(\"positivo\")\n```",
+      "latency_seconds": 1.873,
+      "format_ok": true,
+      "keyword_recall": 0.5,
+      "all_keywords": false,
+      "keyword_hits": [
+        "if"
+      ]
+    },
+    {
+      "id": "IndentationError-7",
+      "category": "IndentationError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nfor x in range(9):\nprint(x)\n```\nErro observado: IndentationError: expected an indented block after 'for' statement\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o corpo do laço for não está indentado.\nCorreção: indente o print dentro do for.\nCódigo corrigido:\n```python\nfor x in range(9):\n    print(x)\n```",
+      "expected_keywords": [
+        "indent",
+        "for"
+      ],
+      "generated_answer": "Causa: O código está incorretamente indentado para indicar que deve ser feito um bloco de instruções dentro do loop.\n\nCorreção:\n\n```python\nfor x in range(9):\n    print(x)\n```\n\nCódigo corrigido:\n\n```python\nfor x in range(9):\n    print(x)\n```",
+      "latency_seconds": 1.777,
+      "format_ok": true,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "indent",
+        "for"
+      ]
+    },
+    {
+      "id": "FileNotFoundError-7",
+      "category": "FileNotFoundError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nwith open(\"dados_7.csv\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())\n```\nErro observado: FileNotFoundError: [Errno 2] No such file or directory: 'dados_7.csv'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o arquivo solicitado não foi encontrado no caminho informado.\nCorreção: verifique a existência do arquivo antes de abrir.\nCódigo corrigido:\n```python\nfrom pathlib import Path\narquivo = Path(\"dados_7.csv\")\nif arquivo.is_file():\n    print(arquivo.read_text(encoding=\"utf-8\"))\nelse:\n    print(\"Arquivo não encontrado\")\n```",
+      "expected_keywords": [
+        "arquivo",
+        "caminho"
+      ],
+      "generated_answer": "Causa: O arquivo \"dados_7.csv\" não foi encontrado no caminho especificado.\n\nCorreção:\n\n```python\nimport os\n\n# Verifica se o arquivo existe\nif not os.path.exists('dados_7.csv'):\n    raise FileNotFoundError(\"Arquivo não encontrado: dados_7.csv\")\n\n# Abre o arquivo para leitura\nwith open('dados_7.csv', 'r', encoding='utf-8') as f:\n    print(f.read())\n```\n\nEste código verifica se o arquivo \"dados_7.csv\" existe e, caso contrário, levanta uma exceção `FileNotFoundError`. Se o arquivo existir, ele abre o arquivo para leitura e imprime seu conteúdo.",
+      "latency_seconds": 3.68,
+      "format_ok": false,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "arquivo",
+        "caminho"
+      ]
+    },
+    {
+      "id": "TypeError_missing_arg-7",
+      "category": "TypeError_missing_arg",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\ndef somar(a, b):\n    return a + b\nprint(somar(8))\n```\nErro observado: TypeError: somar() missing 1 required positional argument: 'b'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: a função somar exige dois argumentos, mas recebeu apenas um.\nCorreção: forneça o segundo argumento ao chamar a função.\nCódigo corrigido:\n```python\ndef somar(a, b):\n    return a + b\nprint(somar(8, 9))\n```",
+      "expected_keywords": [
+        "argumento",
+        "funcao"
+      ],
+      "generated_answer": "Causa: O erro ocorreu porque o parâmetro 'b' foi passado como uma string, mas no código, ele está sendo usado como um número inteiro.\n\nCorreção:\n\nAgora que estamos utilizando um número inteiro para 'b', podemos corrigir o erro adicionando um ponto após 'b':\n\n```python\ndef somar(a, b):\n    return a + b\n\nprint(somar(8))\n```\n\nEste código deve resolver o problema sem precisar alterar nada do seu código original.",
+      "latency_seconds": 2.718,
+      "format_ok": false,
+      "keyword_recall": 0.0,
+      "all_keywords": false,
+      "keyword_hits": []
+    },
+    {
+      "id": "UnboundLocalError-7",
+      "category": "UnboundLocalError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nx = 8\ndef calcular():\n    print(x)\n    x = 10\ncalcular()\n```\nErro observado: UnboundLocalError: cannot access local variable 'x' where it is not associated with a value\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: a atribuição torna x local e ela é lida antes de receber valor.\nCorreção: use uma variável local inicializada antes da leitura.\nCódigo corrigido:\n```python\ndef calcular():\n    x = 8\n    print(x)\ncalcular()\n```",
+      "expected_keywords": [
+        "local",
+        "antes"
+      ],
+      "generated_answer": "Causa: O erro ocorreu porque o valor inicial do variável `x` foi declarado fora da função `calcular()`, mas não foi definida dentro dela.\n\nCorreção:\n\nAqui está a versão corrigida do código:\n\n```python\nx = 8\ndef calcular():\n    global x  # Importante: Definir o valor de x como global para evitar a exceção BoundLocalError\n    print(x)\n    x = 10\n\ncalcular()\n```\n\nEste código resolve o problema devido à declaração de `x` fora da função, que causou a exceção de bound local error. A variável `x` foi definida dentro da função, garantindo que ela seja acessada corretamente.",
+      "latency_seconds": 3.969,
+      "format_ok": false,
+      "keyword_recall": 0.5,
+      "all_keywords": false,
+      "keyword_hits": [
+        "local"
+      ]
+    },
+    {
+      "id": "TypeError_None-7",
+      "category": "TypeError_None",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nresultado = None\nprint(resultado + 10)\n```\nErro observado: TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: None não pode ser somado a um inteiro.\nCorreção: verifique None e atribua valor numérico antes de somar.\nCódigo corrigido:\n```python\nresultado = None\nvalor = 0 if resultado is None else resultado\nprint(valor + 10)\n```",
+      "expected_keywords": [
+        "none",
+        "inteiro"
+      ],
+      "generated_answer": "Causa: O operador `+` não pode ser usado com tipos inteiros ou NoneType.\n\nCorreção:\n\n```python\nresultado = None\nprint(resultado + 10)\n```\n\nCódigo corrigido:\n\n```python\nresultado = None\nprint(resultado + 10)\n```",
+      "latency_seconds": 1.658,
+      "format_ok": true,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "none",
+        "inteiro"
+      ]
+    },
+    {
+      "id": "ModuleNotFoundError-7",
+      "category": "ModuleNotFoundError",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nimport modulo_inexistente_7\nprint(modulo_inexistente_7.versao)\n```\nErro observado: ModuleNotFoundError: No module named 'modulo_inexistente_7'\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: o módulo solicitado não existe ou não está instalado no ambiente.\nCorreção: corrija o nome do módulo ou instale a dependência correta.\nCódigo corrigido:\n```python\nimport math\nprint(math.sqrt(11))\n```",
+      "expected_keywords": [
+        "modulo",
+        "instal"
+      ],
+      "generated_answer": "Causa: O erro ocorreu porque o módulo `modulo_inexistente_7` não foi importado ou instalado corretamente no seu ambiente de desenvolvimento.\n\nCorreção:\n\n1. Importar o módulo corretamente:\n   ```python\n   from modulo_inexistente_7 import versao\n   print(versao)\n   ```\n\n2. Verificar se o módulo existe antes de tentar importá-lo:\n   ```python\n   if __name__ == \"__main__\":\n       try:\n           from modulo_inexistente_7 import versao\n           print(versao)\n       except ImportError as e:\n           print(f\"O módulo '{modulo_inexistente_7.__name__}' não foi encontrado.\")\n   ```\n\n3. Certifique-se de que o módulo está na pasta correta do",
+      "latency_seconds": 4.458,
+      "format_ok": false,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "modulo",
+        "instal"
+      ]
+    },
+    {
+      "id": "TypeError_not_iterable-7",
+      "category": "TypeError_not_iterable",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nquantidade = 8\nfor item in quantidade:\n    print(item)\n```\nErro observado: TypeError: 'int' object is not iterable\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: um número inteiro não é iterável em um laço for.\nCorreção: use range para percorrer uma quantidade de repetições.\nCódigo corrigido:\n```python\nquantidade = 8\nfor item in range(quantidade):\n    print(item)\n```",
+      "expected_keywords": [
+        "inteiro",
+        "range"
+      ],
+      "generated_answer": "Causa: O erro ocorreu porque você tentou iterar sobre uma lista (uma sequência) que contém apenas números inteiros.\n\nCorreção:\n\nAgora que você sabe que está iterando sobre uma lista de inteiros, você pode usar o método `list()` para converter essa lista em uma string, que é mais compatível com a função `print()`. Isso resolverá o problema.\n\nCódigo corrigido:\n\n```python\nquantidade = 8\nfor item in str(quantidade):\n    print(item)\n```\n\nEste código converte a lista de inteiros em uma string, que é então convertida para uma lista de caracteres, permitindo que você use `print()` diretamente no console ou na linha de comando.",
+      "latency_seconds": 3.995,
+      "format_ok": true,
+      "keyword_recall": 0.5,
+      "all_keywords": false,
+      "keyword_hits": [
+        "inteiro"
+      ]
+    },
+    {
+      "id": "NameError_function-7",
+      "category": "NameError_function",
+      "prompt": "Resolva o erro abaixo em Python.\nCódigo:\n```python\nprint(calcular_media_7([2, 4, 6]))\n```\nErro observado: NameError: name 'calcular_media_7' is not defined\nResponda com Causa, Correção e Código corrigido.",
+      "expected_answer": "Causa: a função calcular_media foi chamada antes de ser declarada ou importada.\nCorreção: defina a função antes de utilizá-la.\nCódigo corrigido:\n```python\ndef calcular_media_7(valores):\n    return sum(valores) / len(valores)\nprint(calcular_media_7([2, 4, 6]))\n```",
+      "expected_keywords": [
+        "funcao",
+        "defin"
+      ],
+      "generated_answer": "Causa: O nome do método `calcular_media_7` não foi definido no código.\n\nCorreção:\n\n```python\ndef calcular_media_7(lista):\n    return sum(lista) / len(lista)\n\ntry:\n    print(calcular_media_7([2, 4, 6]))\nexcept NameError as e:\n    print(f\"Ocorreu um erro: {str(e)}\")\nelse:\n    print(\"Media calculada com sucesso.\")\n```\n\nEste código define uma função chamada `calcular_media_7` que recebe uma lista como parâmetro e retorna a média desses números. A função também verifica se a variável `calcular_media_7` ainda está definida antes da execução do programa, para evitar erros de referência. Se houver um erro, será lançado um `NameError`. Caso contrário",
+      "latency_seconds": 4.837,
+      "format_ok": false,
+      "keyword_recall": 1.0,
+      "all_keywords": true,
+      "keyword_hits": [
+        "funcao",
+        "defin"
+      ]
+    }
+  ]
+}
