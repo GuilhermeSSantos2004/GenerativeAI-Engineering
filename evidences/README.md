@@ -15,7 +15,7 @@ A análise das saídas do ZIP está registrada em [docs/RESULTADOS_REAIS.md](../
 
 ## Capturas reais publicadas e verificadas no GitHub
 
-O estudante enviou os seguintes prints em 15/10/2026 e os nove arquivos PNG **originais** foram publicados em [`evidences/screenshots/`](screenshots/) no commit [`0a219b1`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/0a219b14d44284f2505dfc754eb241b1016ec0ab). Os arquivos foram conferidos diretamente na API do GitHub, com o mesmo tamanho em bytes do arquivo recebido:
+O estudante enviou os seguintes prints em 15/10/2026 e os nove arquivos PNG **originais** foram publicados em [`evidences/screenshots/`](screenshots/) nos commits [`0a219b1`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/0a219b14d44284f2505dfc754eb241b1016ec0ab) e [`cf79975`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/cf79975c34b5d8929bb79d5b53f0fa54cfc573f8). Os arquivos foram conferidos diretamente na API do GitHub, com o mesmo tamanho em bytes do arquivo recebido:
 
 | Arquivo | Conteúdo | Análise |
 |---|---|---|
@@ -29,7 +29,7 @@ O estudante enviou os seguintes prints em 15/10/2026 e os nove arquivos PNG **or
 | `screenshots/08_frontend_prompt_adicional.png` | Teste complementar no Gradio | Demonstra interface em operação |
 | `screenshots/09_grafico_comparacao_original.png` | Gráfico comparativo original | Figura produzida na avaliação Colab |
 
-**Conferência:** os nove links acima estão disponíveis no GitHub e foram associados aos arquivos enviados pelo grupo. Os screenshots do navegador não foram rotulados como capturas do VS Code. Não diga que um print está publicado só por constar na tabela.
+**Conferência:** os nove links acima estão disponíveis no GitHub e foram associados aos arquivos enviados pelo grupo. Os screenshots do navegador não foram rotulados como capturas do VS Code. Todos os nove arquivos foram verificados na pasta remota.
 
 ## Pendências frente ao professor
 
