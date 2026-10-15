@@ -10,6 +10,8 @@ FILE_MAP = {
     "results/experiment_b.json": "evidences/experiment_b.json",
     "results/summary/comparison.csv": "evidences/comparison.csv",
     "results/summary/comparison.png": "evidences/comparison.png",
+    "results/summary/loss_experiment_a.png": "evidences/loss_experiment_a.png",
+    "results/summary/loss_experiment_b.png": "evidences/loss_experiment_b.png",
     "outputs/experiment_a/metrics.json": "evidences/experiment_a_training.json",
     "outputs/experiment_a/history.json": "evidences/experiment_a_history.json",
     "outputs/experiment_b/metrics.json": "evidences/experiment_b_training.json",
