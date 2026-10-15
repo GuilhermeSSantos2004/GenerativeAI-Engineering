@@ -4,7 +4,7 @@
 
 **Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Turma: 4ESPX**  |  **Grupo:** 5 integrantes
 
-> **Status:** implementação e dataset publicados; execução real dos experimentos com GPU e as capturas do VS Code ainda precisam ser realizadas. Este repositório não apresenta números fictícios como se fossem resultados.
+> **Status atualizado em 15/10/2026:** fine-tuning LoRA A/B, baseline e inferências **executados realmente na GPU Tesla T4 do Google Colab**; métricas e gráfico publicados em `evidences/`. Capturas no navegador Gradio/Colab foram recebidas e organizadas para upload. **A captura da GPU dentro do VS Code ainda não foi enviada.** Não há métricas fictícias.
 
 ## Execute o projeto no Google Colab (GPU gratuita)
 
@@ -116,20 +116,32 @@ GenerativeAI-Engineering/
 └── requirements.txt
 ~~~
 
+## Resultados verificados do treinamento na Tesla T4 (15/10/2026)
+
+![Comparação real das métricas de texto: baseline, LoRA A e LoRA B](evidences/comparison.svg)
+
+| Indicador | Modelo original | LoRA A | LoRA B |
+|---|---:|---:|---:|
+| Formato com as três seções solicitadas | 43,75% | 100% | 100% |
+| Recall de palavras-chave | 75% | 68,75% | 75% |
+| Todas as palavras-chave | 56,25% | 50% | 62,5% |
+
+**Limitações:** os valores representam métricas textuais auxiliares calculadas sobre **16 testes sintéticos reservados**, não acerto semântico. As capturas Gradio também identificaram correções incorretas em certos casos (especialmente IndexError). [Análise técnica e erros observados](docs/RESULTADOS_REAIS.md) · [GPU real](evidences/gpu.json) · [Métricas por teste](evidences/per_case_scores.csv) · [Treinamento A](evidences/experiment_a_training.json) · [Treinamento B](evidences/experiment_b_training.json).
+
 ## Correspondência com os itens da atividade
 
 | Exigência | Arquivo/solução | Situação |
 |---|---|---|
 | Selecionar LLM | Qwen2.5-0.5B-Instruct | Definido |
 | Resolver problema específico | Diagnóstico de erros Python | Definido |
-| Treinar localmente a LLM | `src/train.py` e notebook Colab | Preparado; falta rodar GPU |
-| Testar diferentes parâmetros | Experimentos A/B | Preparado; falta rodar |
-| Avaliar respostas | `src/evaluate.py`, `src/report.py` | Preparado; faltam resultados |
-| Realizar testes usando GPU | `scripts/check_gpu.py`, verificações CUDA | Preparado; falta evidência real |
-| Criar frontend para prompts | `src/ui.py` (Gradio) | Implementado; falta print |
+| Treinar localmente a LLM | `src/train.py` e notebook Colab | **Executado** na Tesla T4; métricas disponíveis |
+| Testar diferentes parâmetros | Experimentos A/B | **Executados**, parâmetros e losses registrados |
+| Avaliar respostas | `src/evaluate.py`, `src/report.py` | **Executado** em 16 testes; erros qualitativos reconhecidos |
+| Realizar testes usando GPU | `scripts/check_gpu.py`, verificações CUDA | **Executado** na T4; `evidences/gpu.json` |
+| Criar frontend para prompts | `src/ui.py` (Gradio) | **Executado**; screenshots recebidos, aguardando upload binário |
 | Capturar GPU no VS Code | [Guia de execução](docs/EXECUCAO.md) | Pendente de print real |
-| Documentar código no GitHub | README, docs, fontes, notebooks e dataset | Publicado |
-| Grupo 4–5 pessoas | [Lista de referência](docs/GRUPO.md) | Confirmar para a disciplina |
+| Documentar código no GitHub | README, docs, fontes, notebooks e dataset | Publicado; complementação das imagens pendente |
+| Grupo 4–5 pessoas | [Integrantes confirmados](docs/GRUPO.md) | **5 pessoas confirmadas, turma 4ESPX** |
 
 ## Documentação e evidências
 
