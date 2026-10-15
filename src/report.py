@@ -44,6 +44,35 @@ def main():
     fig.tight_layout()
     fig.savefig(out / "comparison.png", dpi=160)
     plt.close(fig)
+    # Curvas de perdas reais para mostrar o comportamento de cada experimento.
+    for variant in ("experiment_a", "experiment_b"):
+        history_path = Path("outputs") / variant / "history.json"
+        if not history_path.is_file():
+            continue
+        history = json.loads(history_path.read_text(encoding="utf-8"))
+        losses = [(h["step"], h["loss"]) for h in history
+                  if "loss" in h and "step" in h]
+        eval_losses = [(h["step"], h["eval_loss"]) for h in history
+                       if "eval_loss" in h and "step" in h]
+        if not losses and not eval_losses:
+            continue
+        fig_loss, ax_loss = plt.subplots(figsize=(8, 4.5))
+        if losses:
+            ax_loss.plot([v[0] for v in losses], [v[1] for v in losses],
+                         marker="o", label="Treinamento")
+        if eval_losses:
+            ax_loss.plot([v[0] for v in eval_losses],
+                         [v[1] for v in eval_losses], marker="s",
+                         label="Validação (holdout)")
+        ax_loss.set_title(f"Loss real — {variant}")
+        ax_loss.set_xlabel("Step")
+        ax_loss.set_ylabel("Cross-entropy loss")
+        ax_loss.legend()
+        ax_loss.grid(alpha=0.25)
+        fig_loss.tight_layout()
+        fig_loss.savefig(out / f"loss_{variant}.png", dpi=160)
+        plt.close(fig_loss)
+
     print("Arquivos gerados:", out / "comparison.csv", out / "comparison.png")
 
 
