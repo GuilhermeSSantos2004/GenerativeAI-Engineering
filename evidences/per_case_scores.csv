@@ -1,0 +1,17 @@
+case_id,baseline_keyword_recall,lora_a_keyword_recall,lora_b_keyword_recall,baseline_format_ok,lora_a_format_ok,lora_b_format_ok
+NameError-7,0.5,1,1,0,1,1
+TypeError_concat-7,0.5,0,0,1,1,1
+ZeroDivisionError-7,1,1,1,0,1,1
+IndexError-7,1,0.5,0.5,1,1,1
+KeyError-7,0.5,1,1,1,1,1
+AttributeError-7,1,1,1,0,1,1
+ValueError-7,1,1,1,0,1,1
+SyntaxError-7,0.5,0.5,0.5,1,1,1
+IndentationError-7,1,1,1,1,1,1
+FileNotFoundError-7,1,0.5,0.5,0,1,1
+TypeError_missing_arg-7,0,1,1,0,1,1
+UnboundLocalError-7,0.5,0.5,0.5,0,1,1
+TypeError_None-7,1,0.5,1,1,1,1
+ModuleNotFoundError-7,1,0.5,1,0,1,1
+TypeError_not_iterable-7,0.5,0,0,1,1,1
+NameError_function-7,1,1,1,0,1,1
