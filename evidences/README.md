@@ -28,8 +28,9 @@ O estudante enviou os seguintes prints em 15/10/2026 e os nove arquivos PNG **or
 | `screenshots/07_treinamento_lora_B_t4.png` | Treinamento B finalizado, Tesla T4 no painel | Returncode 0 |
 | `screenshots/08_frontend_prompt_adicional.png` | Teste complementar no Gradio | Demonstra interface em operação |
 | `screenshots/09_grafico_comparacao_original.png` | Gráfico comparativo original | Figura produzida na avaliação Colab |
+| [`screenshots/10_gpu_vscode_tesla_t4.webp`](screenshots/10_gpu_vscode_tesla_t4.webp) | Captura REAL do notebook aberto no VS Code, com GPU Tesla T4, CUDA disponível True e VRAM | Evidência final solicitada pelo professor; imagem original convertida para WebP **lossless**, sem alteração de conteúdo |
 
-**Conferência:** os nove links acima estão disponíveis no GitHub e foram associados aos arquivos enviados pelo grupo. Os screenshots do navegador não foram rotulados como capturas do VS Code. Todos os nove arquivos foram verificados na pasta remota.
+**Conferência:** os nove arquivos PNG e a captura adicional do VS Code em formato WebP sem perdas estão disponíveis no GitHub. Os screenshots do navegador não foram rotulados como capturas do VS Code; a imagem 10 é a captura verdadeira do editor.
 
 ## Pendências frente ao professor
 
@@ -37,12 +38,16 @@ O estudante enviou os seguintes prints em 15/10/2026 e os nove arquivos PNG **or
 - [x] Comparação do modelo original com os fine-tunings.
 - [x] Frontend Gradio com respostas registradas em prints.
 - [x] Grupo de 5 integrantes, turma 4ESPX, em `docs/GRUPO.md`.
-- [ ] **Print da GPU efetivamente dentro do VS Code**. Os prints atuais são do Google Colab no navegador, não substituem o requisito literal.
+- [x] **Print da GPU efetivamente dentro do VS Code**: [`10_gpu_vscode_tesla_t4.webp`](screenshots/10_gpu_vscode_tesla_t4.webp), com CUDA True, Tesla T4, 14.56 GiB de VRAM e tensor `cuda:0`. A GPU executada no editor é remota (Google Colab), não um componente físico do notebook.
 - [x] Publicar os nove PNGs originais em `screenshots/`.
 - [x] Publicar os JSON detalhados das 16 respostas por variante (`baseline.json`, `experiment_a.json`, `experiment_b.json`).
 - [x] Publicar os históricos dos experimentos, relatório de execução e gráficos de loss originais.
 
 ## Galeria visual dos prints enviados
+
+**Captura no VS Code (requisito específico):**
+
+![VS Code executando notebook Python com Tesla T4 e CUDA True](screenshots/10_gpu_vscode_tesla_t4.webp)
 
 ![Comparação dos modelos com Tesla T4](screenshots/01_colab_comparacao_e_gpu_t4.png)
 
@@ -52,4 +57,4 @@ O estudante enviou os seguintes prints em 15/10/2026 e os nove arquivos PNG **or
 
 ![Treinamento LoRA B finalizado](screenshots/07_treinamento_lora_B_t4.png)
 
-**Não publicar os pesos-base do modelo nem afirmar que os prints no navegador são capturas de dentro do VS Code.**
+**Nota de integridade:** o print 10 é verdadeiramente do VS Code e os demais são do navegador Colab/Gradio. Não publicar pesos-base do modelo nem tratar a GPU remota como placa instalada no computador físico.
