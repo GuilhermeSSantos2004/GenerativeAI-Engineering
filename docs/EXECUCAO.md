@@ -12,17 +12,19 @@
 8. Ao final, exporte os JSON, CSV, PNG, relatório, adapters e baixe o ZIP **antes do Colab expirar**.
 9. O servidor Gradio é aberto na última célula. `--share` cria URL temporária pública: **não coloque informações confidenciais**.
 
-Colab Free não garante disponibilidade da GPU nem duração da sessão. Se GPU não estiver disponível, não registre testes em CPU como se tivessem sido feitos em GPU. Retome quando o Colab liberar hardware, ou utilize outro ambiente CUDA.
+A disponibilidade de GPU e a duração das sessões variam no Colab Free. Se o ambiente estiver sem CUDA, escolha outro runtime com GPU e execute a verificação novamente.
 
-## 2. Evidência solicitada: GPU DENTRO do VS Code
+## 2. VS Code conectado ao Colab
 
-Há duas formas possíveis:
+A extensão [Google Colab para VS Code](https://marketplace.visualstudio.com/items?itemName=Google.colab) permite abrir o notebook `.ipynb` no editor e executar suas células em um runtime do Colab. Basta selecionar o kernel `Colab` e conectar a um ambiente com GPU.
 
-**Opção A (preferida):** instale a extensão oficial [Google Colab para VS Code](https://marketplace.visualstudio.com/items?itemName=Google.colab), abra o notebook `.ipynb` no VS Code, selecione o kernel do Colab e conecte ao runtime GPU. O comportamento pode variar conforme a versão da extensão. Execute a primeira célula e tire um print do **VS Code inteiro**, mostrando código e saída real `GPU:`, `CUDA disponível: True`, dispositivo `cuda:0` e `nvidia-smi`.
+Para conferir o ambiente, execute a primeira célula do notebook. Ela imprime a versão do PyTorch, a disponibilidade do CUDA, o modelo da GPU, a VRAM e o dispositivo usado por um tensor de teste.
 
-**Opção B:** quando a extensão não conectar, execute o notebook no navegador Colab e obtenha a evidência real por lá, mas **registre honestamente** que o print não é do VS Code; isso pode não atender integralmente a exigência do professor.
+![Execução da verificação de GPU no VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp)
 
-Nome sugerido: `evidences/screenshots/gpu_vscode.png`. Capture também `treinamento_a.png`, `treinamento_b.png`, `avaliacao.png` e `frontend.png`.
+[Ver a captura em tamanho original](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp)
+
+Na execução registrada neste projeto, o dispositivo era uma **Tesla T4 do Google Colab** (GPU remota), com `CUDA disponível: True` e tensor em `cuda:0`.
 
 ## 3. Execução via terminal conectado a GPU
 
@@ -45,16 +47,10 @@ python -m src.ui --adapter outputs/experiment_a/final_adapter
 
 Para frontend em Colab, use `python -m src.ui --adapter outputs/experiment_a/final_adapter --share`. Fora do Colab, abra http://localhost:7860.
 
-O repositório não envia pesos-base (~centenas de MB); o Transformers faz download do modelo público. Os adapters são armazenados localmente em `outputs/` e podem ser recuperados do ZIP. **Não faça commit do ZIP grande ou de arquivos corporativos/sensíveis.**
+O Transformers baixa o modelo-base público quando necessário. Os adaptadores LoRA são salvos em `outputs/` e podem ser exportados junto dos resultados. Os arquivos grandes de pesos não são versionados no GitHub.
 
-## 4. Publicar as evidências no GitHub
+## 4. Resultados e evidências
 
-Após salvar os arquivos em seu PC, copie `evidences/` para o clone local do repositório e rode:
+A execução de 15/10/2026 está documentada em [evidences/](../evidences/). Essa pasta inclui métricas, JSONs das respostas, históricos de loss, gráficos e [capturas de tela](../evidences/screenshots/).
 
-```bash
-git add evidences docs
-git commit -m "docs: add real GPU training and evaluation evidence"
-git push origin main
-```
-
-Inclua manualmente as capturas de tela na pasta `evidences/screenshots/`. Os arquivos `outputs/` e `results/` são ignorados pelo Git; use `scripts/export_evidence.py` para copiar o material selecionado a `evidences/`.
+Para uma nova execução, `python scripts/export_evidence.py` copia os arquivos selecionados de `results/` e `outputs/` para `evidences/`. O relatório pode ser gerado com `python scripts/build_markdown_report.py`.
