@@ -29,7 +29,7 @@ Dataset sintético criado especificamente para a disciplina, sem informações p
 
 IDs e prompts exatos são exclusivos por split. Contudo, **os casos seguem os mesmos padrões de erro**, com variações de parâmetros e nomes. Isso facilita observar especialização, mas **limita alegações de generalização**. Não use estas métricas como prova de aptidão para depurar código arbitrário.
 
-## Experimentos propostos
+## Experimentos realizados
 
 | Variante | Learning rate | Épocas | LoRA r | Batch | Acúmulo | Seed |
 |---|---:|---:|---:|---:|---:|---:|
@@ -37,7 +37,7 @@ IDs e prompts exatos são exclusivos por split. Contudo, **os casos seguem os me
 | A | 2e-4 | 2 | 8 | 2 | 4 | 42 |
 | B | 5e-5 | 3 | 16 | 2 | 4 | 42 |
 
-A e B **variam três parâmetros conjuntamente**. Sua comparação é exploratória e não isola o efeito causal de um hiperparâmetro. Se houver recursos, repetir mudando apenas uma variável por vez.
+As configurações A e B alteram rank LoRA, learning rate e número de épocas. A comparação permite observar diferenças entre configurações, mas não isola o efeito de cada hiperparâmetro.
 
 ## Avaliação
 
@@ -48,15 +48,14 @@ As 16 perguntas reservadas são respondidas com temperatura = 0 por todas as var
 3. `full_keyword_rate`: fração de respostas contendo todos os termos esperados;
 4. `mean_latency_seconds`: tempo médio por resposta.
 
-**Importante:** palavras-chave podem aparecer em uma resposta semanticamente errada. Cada JSON inclui prompt, resposta de referência, geração real, pontuação e tempo para permitir auditoria. Revisar manualmente correções e possíveis respostas alucinadas.
+A presença de palavras-chave não significa, necessariamente, que a correção do código esteja certa. Por isso, os arquivos JSON guardam o prompt, a referência, a resposta gerada, a pontuação e o tempo. A discussão dos casos em que o modelo errou está em [Resultados dos experimentos](RESULTADOS_REAIS.md).
 
-Também registramos loss de treino/validação, versão CUDA, GPU, VRAM pico, tempo e hiperparâmetros. Nenhuma dessas medições foi preenchida artificialmente no repositório.
+Também foram registrados loss de treinamento e validação, versão CUDA, modelo da GPU, uso de memória, duração e hiperparâmetros.
 
-## Critérios de conclusão
+## Reprodutibilidade e limitações
 
-Projeto só estará completamente evidenciado depois de:
-- GPU CUDA disponível e screenshot verdadeiro dentro do VS Code;
-- baseline, treinamento A/B e inferências na GPU;
-- métricas e adapters salvos;
-- comparação e revisão manual das respostas;
-- evidências reais versionadas/publicadas no GitHub.
+Os scripts e o notebook estão disponíveis neste repositório, junto dos resultados da execução com Tesla T4. O ambiente gratuito do Colab pode atribuir outra GPU e versões de biblioteca diferentes, o que pode afetar tempo e resultados.
+
+O dataset sintético possui padrões parecidos entre os conjuntos e foi pensado para uma atividade acadêmica, não para uma solução pronta para produção. Seria interessante ampliar o número de exemplos, incluir erros de projetos reais e avaliar as correções executando testes Python automaticamente.
+
+**Evidências:** [GPU no VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) · [Avaliações completas](../evidences/) · [Gráficos e resultados](RESULTADOS_REAIS.md)
