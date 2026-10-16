@@ -1,53 +1,49 @@
-# Auditoria final de entrega — CP2/CP3
+# Conferência dos requisitos — CP2/CP3
 
 **Disciplina:** Generative AI for Engineering  
 **Professor:** Francisco Elanio  
 **Turma:** 4ESPX  
-**Prazo informado:** 15/10/2026, 23h59  
-**Repositório público:** https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering
+**Entrega:** 15/10/2026
 
-## Verificação requisito a requisito
+## Correspondência entre atividade e projeto
 
-| Requisito do enunciado | Status | Evidência no repositório |
+| Item solicitado | Como foi realizado | Evidência |
 |---|---|---|
-| Selecionar/escolher LLM | **OK** | `Qwen/Qwen2.5-0.5B-Instruct` em [README](../README.md), [src/common.py](../src/common.py) |
-| Problema específico para resolver | **OK** | Diagnóstico e correção de erros Python, [metodologia](METODOLOGIA.md) e [dataset](../data/) |
-| Treinar efetivamente uma LLM | **OK** | LoRA supervisionado em [src/train.py](../src/train.py) e [notebook Colab](../notebooks/CP2_CP3_Colab.ipynb); métricas reais [A](../evidences/experiment_a_training.json) e [B](../evidences/experiment_b_training.json) |
-| Testar diferentes parâmetros | **OK** | A: LR `2e-4`, rank `8`, 2 épocas; B: LR `5e-5`, rank `16`, 3 épocas; detalhes em [metodologia](METODOLOGIA.md) |
-| Verificar/avaliar as respostas | **OK** | 16 casos por variante (48 gerações) em [baseline](../evidences/baseline.json), [LoRA A](../evidences/experiment_a.json), [LoRA B](../evidences/experiment_b.json); [análise de falhas](RESULTADOS_REAIS.md) |
-| Testes da LLM usando GPU | **OK** | Treinamentos e avaliações exigem `torch.cuda.is_available()`; [gpu.json](../evidences/gpu.json) registra Tesla T4; [scripts](../src/) e resultados indicam GPU |
-| Frontend para criar/inserir prompt | **OK** | [Gradio](../src/ui.py) e [prints reais](../evidences/screenshots/02_frontend_nameerror.png) |
-| Print da GPU funcionando no VS Code | **OK com ressalva documental** | [Print real do VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp): `CUDA disponível: True`, Tesla T4, VRAM e tensor em `cuda:0`; GPU é **remota Colab**, não instalada fisicamente no notebook |
-| Toda documentação e código no GitHub | **OK** | README, scripts, notebook, dataset, JSONs, gráficos, capturas, relatório e testes em `main` |
-| Grupo de 4 a 5 pessoas | **OK** | [5 integrantes, nomes completos e RMs; turma 4ESPX](GRUPO.md) |
+| Escolha da LLM | Qwen2.5-0.5B-Instruct | [Código](../src/common.py) |
+| Problema específico | Diagnosticar erros Python e propor correções em português | [Metodologia](METODOLOGIA.md) |
+| Treinamento da LLM | Fine-tuning supervisionado LoRA | [Notebook](../notebooks/CP2_CP3_Colab.ipynb), [experimento A](../evidences/experiment_a_training.json) e [B](../evidences/experiment_b_training.json) |
+| Hiperparâmetros | Comparação de duas configurações de épocas, learning rate e rank LoRA | [Metodologia](METODOLOGIA.md) |
+| Avaliação das respostas | Baseline e duas versões treinadas, com 16 perguntas por modelo | [Resultados](RESULTADOS_REAIS.md), [respostas em JSON](../evidences/) |
+| Uso de GPU | Treinamentos e inferências avaliadas na NVIDIA Tesla T4 do Colab | [Dados da GPU](../evidences/gpu.json) |
+| Frontend de prompts | Interface Gradio para enviar erros e receber respostas | [Código do frontend](../src/ui.py), [imagem](../evidences/screenshots/02_frontend_nameerror.png) |
+| GPU no VS Code | Execução da verificação CUDA no notebook aberto no editor | [Captura de tela](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) |
+| Documentação no GitHub | Código, dados, instruções e resultados experimentais | [Repositório](../README.md) |
+| Grupo | Cinco integrantes com seus RMs | [Equipe 4ESPX](GRUPO.md) |
 
-## Detalhes do ambiente
+## Ambiente de execução
 
-- A GPU é uma **Tesla T4 do Google Colab**; execução do modelo é local ao processo Python nesse servidor, não no hardware físico do computador pessoal.
-- PyTorch `2.11.0+cu130`; biblioteca CUDA reportada como `13.0`; `CUDA disponível: True`; tensor real em `cuda:0`.
-- O print do VS Code mostra as informações pedidas, mas a **tabela completa do `nvidia-smi` não aparece**; apenas a chamada bem-sucedida `returncode=0`. Nome da GPU, memória e CUDA aparecem diretamente no output do Python.
-- As extensões **GPU Environment** e **GPU Monitor** são *sugestões* do enunciado, não requisitos obrigatórios. O projeto comprova a GPU por código no VS Code.
+A execução utilizou o Google Colab com **NVIDIA Tesla T4**, PyTorch `2.11.0+cu130` e CUDA `13.0` reportado pelo PyTorch. A GPU foi utilizada também a partir do VS Code, por conexão ao runtime remoto. O computador pessoal não possui fisicamente essa placa.
 
-## O que significam os resultados
+O print do editor mostra o nome da GPU, 14,56 GiB de memória, disponibilidade do CUDA e um tensor alocado em `cuda:0`. O comando `nvidia-smi` foi executado com retorno zero, embora sua tabela não esteja visível por inteiro na captura.
 
-| Métrica automática nos 16 testes | Baseline | LoRA A | LoRA B |
+## Resultados e discussão
+
+| Métrica nos 16 testes | Modelo original | LoRA A | LoRA B |
 |---|---:|---:|---:|
-| Formato solicitado | 43,75% | 100% | 100% |
-| Recall de palavras-chave | 75% | 68,75% | 75% |
+| Resposta no formato esperado | 43,75% | 100% | 100% |
+| Recall de termos esperados | 75% | 68,75% | 75% |
 | Todos os termos esperados | 56,25% | 50% | 62,5% |
 
-**Interpretação correta:** fine-tuning melhorou o formato; melhora geral na precisão das correções **não está demonstrada**. A revisão qualitativa encontrou falhas verdadeiras em IndexError, AttributeError e outros tipos. Isso está registrado transparentemente em [RESULTADOS_REAIS.md](RESULTADOS_REAIS.md).
+Os dois fine-tunings melhoraram a organização das respostas. As métricas de termos foram mistas e algumas sugestões de código permaneceram incorretas. Essas ocorrências estão descritas no [relatório de resultados](RESULTADOS_REAIS.md).
 
-## Limitações honestas
+O conjunto de treino é sintético e pequeno. Além disso, os experimentos alteraram mais de um hiperparâmetro de cada vez, de modo que a comparação entre A e B não identifica isoladamente o efeito de cada variável.
 
-1. O conjunto de dados é **sintético e pequeno (128 exemplos)**, com padrões parecidos entre treino, validação e teste. Não demonstra generalização ampla.
-2. Os experimentos A e B variam três hiperparâmetros simultaneamente; a comparação não permite atribuir um ganho a apenas um deles.
-3. O GitHub guarda **código e métricas reais**, mas os arquivos binários dos adapters LoRA treinados (`adapter_model.safetensors`) foram exportados e preservados no ZIP original do grupo, **não foram adicionados ao GitHub**.
-4. O workflow GitHub Actions executa verificações de **integridade/sintaxe em CPU**, enquanto treinamento e avaliações da **LLM** foram realizados na GPU Colab; não confundir verificações de CI com testes de modelo.
-5. Uma avaliação perfeita não é alegada: alguns códigos gerados estavam incorretos.
+Os scripts e os registros de execução estão no repositório. Os **adaptadores LoRA** foram salvos no ZIP de resultados da execução, separado do controle de versão.
 
-## Conclusão
+## Arquivos principais
 
-**Pronto para submissão do LINK do repositório**, pois todos os itens de implementação e evidência do enunciado estão representados e verificáveis. A nota final e a aceitação da GPU remota como evidência de “LLM local” dependem da interpretação do professor. Não há comprovação de entrega efetiva na plataforma acadêmica: o integrante ainda precisa clicar em **Turn in / Entregar**.
-
-**Link para submeter:** https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering
+- [README e apresentação](../README.md)
+- [Notebook de treinamento](../notebooks/CP2_CP3_Colab.ipynb)
+- [Scripts de treinamento e avaliação](../src/)
+- [Registros, capturas e gráficos](../evidences/)
+- [Orientações de execução](EXECUCAO.md)
