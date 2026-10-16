@@ -1,14 +1,25 @@
-# Equipe — CP2/CP3 Generative AI for Engineering
+# Grupo — CP2/CP3 Generative AI for Engineering
 
-**Turma: 4ESPX**  
-**Integrantes: 5 alunos** (conforme requisito de grupo de 4 a 5).
+**Turma:** 4ESPX  
+**Disciplina:** Generative AI for Engineering  
+**Integrantes:** 5 alunos (conforme a exigência de 4 a 5 pessoas)  
+**Entrega:** 15/10/2026
 
 | Integrante | RM |
 |---|---|
-| Guilherme Santos | 551168 |
-| Enricco | 551717 |
-| Gabriel | 99227 |
-| Danilo | 99465 |
-| Laura | 98747 |
+| Guilherme Silva dos Santos | 551168 |
+| Enricco Rossi de Souza Carvalho Miranda | 551717 |
+| Gabriel Marquez Trevisan | 99227 |
+| Danilo Urze Aldred | 99465 |
+| Laura Claro Mathias | 98747 |
 
-Os cinco integrantes foram confirmados para este CP2/CP3. Os RMs foram reaproveitados das atividades anteriores do grupo; devem ser conferidos antes da entrega caso exista alguma alteração de matrícula. Nomes completos não informados permanecem como nomes conhecidos, sem completar sobrenomes por suposição.
+## Projeto do grupo
+
+**Python Debug LLM:** adaptação por fine-tuning LoRA da LLM Qwen2.5-0.5B-Instruct para diagnóstico de erros Python. Treinamento e inferência na GPU remota Tesla T4 do Google Colab, comparando baseline e dois experimentos de hiperparâmetros.
+
+- [README do projeto](../README.md)
+- [Metodologia](METODOLOGIA.md)
+- [Resultados reais](RESULTADOS_REAIS.md)
+- [Evidências visuais](../evidences/screenshots/)
+
+Os nomes completos e os RMs foram utilizados em entregas acadêmicas anteriores do mesmo grupo; a composição dos cinco integrantes e a turma 4ESPX foram confirmadas para esta atividade.
