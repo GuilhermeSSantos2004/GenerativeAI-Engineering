@@ -1,38 +1,33 @@
-# Checklist de entrega — 15/10/2026 às 23h59
+# Entrega — CP2/CP3 Generative AI for Engineering
 
-Este checklist foi atualizado após a execução real no Google Colab em 15/10/2026. A disciplina é da turma **4ESPX**; a equipe tem cinco integrantes confirmados. Os experimentos GPU e a captura no VS Code foram concluídos e publicados. A GPU exibida é remota, fornecida pelo Google Colab.
+**Turma:** 4ESPX  
+**Professor:** Francisco Elanio  
+**Data prevista:** 15/10/2026, às 23h59
 
-| Item do professor | Implementação no repositório | Evidência a obter |
-|---|---|---|
-| Selecionar LLM | Qwen2.5-0.5B-Instruct | Executado na GPU Tesla T4 |
-| Problema específico | Diagnóstico de erros Python | Testes e screenshots Gradio recebidos |
-| Treinar LLM | `src/train.py` + notebook | Concluído A e B, metrics.json publicado |
-| Testar parâmetros | experimentos A/B | Concluído, ranks/LR/épocas registrados |
-| Avaliar respostas | `src/evaluate.py` | Concluído (16 casos cada); JSONs completos publicados em `evidences/` |
-| Testes com GPU | `require_gpu()` impede CPU | Tesla T4 confirmada em `evidences/gpu.json` e no VS Code; execução de nvidia-smi terminou com `returncode=0` (tabela não visível na captura) |
-| Frontend | `src/ui.py` (Gradio) | Testado com prompts reais; os nove prints originais estão publicados no GitHub |
-| Print da GPU no VS Code | [`10_gpu_vscode_tesla_t4.webp`](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) | **CONCLUÍDO**: CUDA True, Tesla T4, VRAM e tensor cuda:0 visíveis no VS Code |
-| Documentação e código no GitHub | README, docs, fontes, dataset, notebook | commit dos resultados |
-| Grupo de 4 a 5 pessoas | `docs/GRUPO.md` | Confirmados 5 integrantes com nomes completos e RMs, turma 4ESPX |
+## Arquivos e evidências do projeto
 
-## Prints efetivamente publicados (nomes exatos)
+| Conteúdo | Localização |
+|---|---|
+| Integrantes e RMs | [docs/GRUPO.md](GRUPO.md) |
+| Definição do problema e escolha do modelo | [README](../README.md) e [metodologia](METODOLOGIA.md) |
+| Código para treinamento LoRA | [src/train.py](../src/train.py) |
+| Notebook do Google Colab | [CP2_CP3_Colab.ipynb](../notebooks/CP2_CP3_Colab.ipynb) |
+| Hiperparâmetros e métricas reais | [evidences/](../evidences/) |
+| Avaliação e exemplos de respostas | [docs/RESULTADOS_REAIS.md](RESULTADOS_REAIS.md) |
+| Frontend para inserir prompts | [src/ui.py](../src/ui.py) |
+| Captura da GPU no VS Code | [10_gpu_vscode_tesla_t4.webp](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) |
+| Testes de integridade do dataset | [tests/test_project.py](../tests/test_project.py) |
 
-1. [GPU CUDA e Tesla T4 dentro do VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) — mostra `CUDA disponível: True`, VRAM 14,56 GiB e tensor em `cuda:0`; `nvidia-smi` finalizou com retorno zero, mas a tabela do comando não foi exibida por inteiro.
-2. [Treinamento LoRA A](../evidences/screenshots/06_treinamento_lora_A_t4.png) — execução encerrada com sucesso no Colab.
-3. [Treinamento LoRA B](../evidences/screenshots/07_treinamento_lora_B_t4.png) — execução encerrada com sucesso no Colab.
-4. [Comparação original vs LoRA A/B](../evidences/screenshots/01_colab_comparacao_e_gpu_t4.png) — métricas e painel T4.
-5. [Frontend Gradio — caso NameError](../evidences/screenshots/02_frontend_nameerror.png) — prompt e resposta.
-6. [Frontend Gradio — caso IndexError](../evidences/screenshots/03_frontend_indexerror_correcao_incorreta.png) — registra também um erro real na correção.
+## Capturas dos testes
 
-[Confira todos os 10 screenshots](../evidences/screenshots/). Os prints do navegador Colab são identificados como navegador e a captura obrigatória do editor é realmente do VS Code.
+![GPU Tesla T4 verificada dentro do VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp)
 
-## Auditoria de capturas recebidas em 15/10/2026
+[Imagem do VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) · [Treinamento A](../evidences/screenshots/06_treinamento_lora_A_t4.png) · [Treinamento B](../evidences/screenshots/07_treinamento_lora_B_t4.png) · [Comparação](../evidences/screenshots/01_colab_comparacao_e_gpu_t4.png) · [Frontend](../evidences/screenshots/02_frontend_nameerror.png)
 
-- Comparação de baseline/A/B no Google Colab + painel Tesla T4: recebida.
-- LoRA A finalizado sem erro visível (returncode=0) e painel Tesla T4: recebida.
-- LoRA B finalizado sem erro visível (returncode=0) e painel Tesla T4: recebida.
-- Gradio: NameError, IndexError, ZeroDivisionError, ValueError, caso adicional: recebidos.
-- **Atenção:** no caso IndexError a solução sugerida usa nomes de variáveis inconsistentes, logo não é evidência de correção perfeita.
-- Print de CUDA no **VS Code**, como enunciado pede: **recebido e publicado** no commit [`5fb9163`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/5fb9163f3871f5c57367d7f0fc25aba15a93298b). A saída do VS Code registra PyTorch 2.11.0+cu130, CUDA 13.0, Tesla T4, 14.56 GiB de VRAM, tensor em cuda:0 e `returncode=0` de nvidia-smi.
+## Resumo
 
-Os **nove PNGs originais foram publicados e verificados** em [`evidences/screenshots/`](../evidences/screenshots/) por meio do commit [`0a219b1`](https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering/commit/0a219b14d44284f2505dfc754eb241b1016ec0ab). Os JSONs completos das 48 respostas (16 perguntas × 3 variantes), as métricas, os históricos e os gráficos de loss foram publicados na pasta [`evidences`](../evidences/). Veja [o inventário das evidências](../evidences/README.md).
+Foram realizados dois fine-tunings LoRA da Qwen2.5-0.5B-Instruct na GPU Tesla T4 do Colab, além da avaliação do modelo original. A aplicação Gradio permite fornecer um erro Python e visualizar a correção sugerida. Os testes registram ganhos na estrutura das respostas e limitações técnicas na correção de alguns casos.
+
+O ambiente utiliza **GPU remota**, conectada ao VS Code. O código, os dados, os resultados e as capturas estão documentados neste repositório.
+
+**Link da entrega:** https://github.com/GuilhermeSSantos2004/GenerativeAI-Engineering
