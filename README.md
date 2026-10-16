@@ -2,6 +2,8 @@
 
 **Turma:** 4ESPX  |  **Grupo:** 5 integrantes  |  **Professor:** Francisco Elanio
 
+**[Auditoria final do CP2/CP3 — checklist requisito por requisito](docs/AUDITORIA_FINAL.md)**
+
 ## Integrantes e RMs
 
 | Integrante | RM |
@@ -175,6 +177,7 @@ A GPU Tesla T4 exibida pertence ao runtime remoto do **Google Colab**, não ao n
 - [Metodologia e limitações](docs/METODOLOGIA.md)
 - [Resultados reais da Tesla T4 e auditoria das respostas](docs/RESULTADOS_REAIS.md)
 - [Checklist de entrega](docs/ENTREGA.md)
+- [Auditoria final — o que foi atendido, o que comprova e limitações](docs/AUDITORIA_FINAL.md)
 - [Integrantes e RMs completos — turma 4ESPX](docs/GRUPO.md)
 - [Evidências e resultados](evidences/README.md)
 
