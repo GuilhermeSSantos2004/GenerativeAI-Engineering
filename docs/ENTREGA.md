@@ -13,18 +13,18 @@ Este checklist foi atualizado após a execução real no Google Colab em 15/10/2
 | Frontend | `src/ui.py` (Gradio) | Testado com prompts reais; os nove prints originais estão publicados no GitHub |
 | Print da GPU no VS Code | [`10_gpu_vscode_tesla_t4.webp`](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) | **CONCLUÍDO**: CUDA True, Tesla T4, VRAM e tensor cuda:0 visíveis no VS Code |
 | Documentação e código no GitHub | README, docs, fontes, dataset, notebook | commit dos resultados |
-| Grupo de 4 a 5 pessoas | `docs/GRUPO.md` | Confirmados 5 integrantes, turma 4ESPX; conferir se RMs continuam iguais |
+| Grupo de 4 a 5 pessoas | `docs/GRUPO.md` | Confirmados 5 integrantes com nomes completos e RMs, turma 4ESPX |
 
-## Prints recomendados
+## Prints efetivamente publicados (nomes exatos)
 
-- [`evidences/screenshots/10_gpu_vscode_tesla_t4.webp`](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp): captura do VS Code com CUDA True, Tesla T4, VRAM e tensor cuda:0; feita a partir do print original em formato WebP sem perdas.
-- `evidences/screenshots/treinamento_a.png`: loss e treino A funcionando.
-- `evidences/screenshots/treinamento_b.png`: loss e treino B funcionando.
-- `evidences/screenshots/comparacao.png`: tabela ou gráfico comparativo real.
-- `evidences/screenshots/frontend.png`: prompt digitado no Gradio e resposta real.
+1. [GPU CUDA e Tesla T4 dentro do VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) — mostra `CUDA disponível: True`, VRAM 14,56 GiB e tensor em `cuda:0`; `nvidia-smi` finalizou com retorno zero, mas a tabela do comando não foi exibida por inteiro.
+2. [Treinamento LoRA A](../evidences/screenshots/06_treinamento_lora_A_t4.png) — execução encerrada com sucesso no Colab.
+3. [Treinamento LoRA B](../evidences/screenshots/07_treinamento_lora_B_t4.png) — execução encerrada com sucesso no Colab.
+4. [Comparação original vs LoRA A/B](../evidences/screenshots/01_colab_comparacao_e_gpu_t4.png) — métricas e painel T4.
+5. [Frontend Gradio — caso NameError](../evidences/screenshots/02_frontend_nameerror.png) — prompt e resposta.
+6. [Frontend Gradio — caso IndexError](../evidences/screenshots/03_frontend_indexerror_correcao_incorreta.png) — registra também um erro real na correção.
 
-**Nunca** preencha métricas inventadas ou prints de terceiros para simular a execução. Guarde também o ZIP dos adapters fora do Colab.
-
+[Confira todos os 10 screenshots](../evidences/screenshots/). Os prints do navegador Colab são identificados como navegador e a captura obrigatória do editor é realmente do VS Code.
 
 ## Auditoria de capturas recebidas em 15/10/2026
 
