@@ -1,12 +1,14 @@
-# CP2 / CP3 — Generative AI for Engineering
+# CP2/CP3 — Generative AI for Engineering
 
-**Turma:** 4ESPX  |  **Grupo:** 5 integrantes  |  **Professor:** Francisco Elanio
+**Projeto:** Python Debug LLM  
+**Disciplina:** Generative AI for Engineering  
+**Professor:** Francisco Elanio  
+**Turma:** 4ESPX  
+**Data da entrega:** 15/10/2026
 
-**[Auditoria final do CP2/CP3 — checklist requisito por requisito](docs/AUDITORIA_FINAL.md)**
+## Integrantes
 
-## Integrantes e RMs
-
-| Integrante | RM |
+| Nome completo | RM |
 |---|---|
 | Guilherme Silva dos Santos | 551168 |
 | Enricco Rossi de Souza Carvalho Miranda | 551717 |
@@ -14,171 +16,160 @@
 | Danilo Urze Aldred | 99465 |
 | Laura Claro Mathias | 98747 |
 
-**Projeto:** Python Debug LLM — Assistente de diagnóstico e correção de erros em Python
+## Execução com GPU no VS Code
 
-**Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Turma: 4ESPX**  |  **Grupo:** 5 integrantes
+O desenvolvimento e os testes foram realizados com uma **NVIDIA Tesla T4** disponibilizada pelo Google Colab. O notebook também foi executado a partir do VS Code, conectado ao ambiente com GPU.
 
-> **Status atualizado em 15/10/2026:** fine-tuning LoRA A/B, baseline e inferências **executados realmente na GPU Tesla T4 do Google Colab**; métricas e gráfico publicados em `evidences/`. Nove capturas reais (incluindo gráfico original) do navegador Colab/Gradio foram **publicadas no GitHub**, em `evidences/screenshots/`. **Print real da GPU dentro do VS Code também publicado, confirmando CUDA e Tesla T4.** Não há métricas fictícias.
+![VS Code executando o notebook com CUDA ativo na Tesla T4](evidences/screenshots/10_gpu_vscode_tesla_t4.webp)
 
-## Execute o projeto no Google Colab (GPU gratuita)
+[Ver a captura em tamanho original](evidences/screenshots/10_gpu_vscode_tesla_t4.webp) · [Informações da GPU (JSON)](evidences/gpu.json)
 
-**[ABRIR NOTEBOOK NO GOOGLE COLAB](https://colab.research.google.com/github/GuilhermeSSantos2004/GenerativeAI-Engineering/blob/main/notebooks/CP2_CP3_Colab.ipynb)**
+Na execução, o PyTorch identificou **CUDA disponível**, a **Tesla T4** e aproximadamente **14,56 GiB de VRAM**. Um tensor foi alocado em `cuda:0`. A GPU é remota, fornecida pelo Colab; não faz parte do hardware do notebook pessoal.
 
-1. Acesse o link acima com sua conta Google.
-2. Em **Ambiente de execução > Alterar tipo de ambiente de execução**, escolha **GPU** (se disponível).
-3. Execute as células do notebook **na ordem**. A primeira célula verifica se CUDA está funcionando.
-4. O notebook clona o código, instala dependências, testa dataset, avalia baseline, executa 2 fine-tunings LoRA e compara resultados.
-5. Ao final, exporte evidências, salve o ZIP contendo adapters/resultados e tire os prints reais da GPU no VS Code e do frontend.
+## Sobre o projeto
 
-**Atenção:** GPUs no Colab Free não são garantidas. Não marque um treinamento como realizado antes de ver a execução e seus arquivos de saída. Fonte: [FAQ oficial do Colab](https://research.google.com/colaboratory/intl/pt-BR/faq.html).
+O Python Debug LLM é um assistente voltado ao **diagnóstico de erros em códigos Python**. A aplicação recebe o código, a mensagem de erro e uma descrição do problema. Em seguida, gera uma resposta em português organizada em três partes: **causa**, **correção** e **código corrigido**.
 
-## Problema de engenharia abordado
+Escolhemos a **[Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)** por ser um modelo aberto e relativamente leve, adequado aos recursos disponíveis no Google Colab gratuito. Fizemos um ajuste fino supervisionado com **LoRA**, comparando duas configurações de hiperparâmetros com a versão original da LLM.
 
-Durante o desenvolvimento, estudantes e profissionais encontram exceções como `NameError`, `TypeError`, `IndexError`, `KeyError` e `ZeroDivisionError`. A LLM recebe um trecho de código e o erro exibido, identifica a causa e apresenta uma correção concreta em português.
+### Exemplo de uso
 
-**Exemplo de entrada**
+**Entrada:**
 
-~~~text
-Explique este erro e corrija:
+```python
 print(total)
-NameError: name 'total' is not defined
-~~~
+# NameError: name 'total' is not defined
+```
 
-**Formato de resposta esperado**
+**Saída esperada:**
 
-~~~text
-Causa: a variável total foi utilizada antes de ser definida.
-Correção: inicialize a variável antes de utilizá-la.
-Código corrigido:
+```text
+Causa: a variável total está sendo utilizada antes de ser definida.
+Correção: definir um valor para total antes da chamada do print.
+```
+
+```python
 total = 10
 print(total)
-~~~
+```
 
-## Modelo e stack
+## Tecnologias utilizadas
 
-| Componente | Escolha | Justificativa |
-|---|---|---|
-| LLM | [Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct) | Modelo aberto e compacto para runtime GPU gratuito |
-| Ajuste fino | PEFT + LoRA | Treina poucos parâmetros adicionais em vez de todos os pesos |
-| Engine | PyTorch + Transformers | Inferência e treino reais, sem APIs proprietárias |
-| Plataforma GPU | Google Colab Free | Permite testar em runtime com CUDA quando disponível |
-| Frontend | Gradio | Chat com campo para prompts e seleção baseline/LoRA |
-| Avaliação | Scripts próprios + JSON/CSV/PNG | Resultados reproduzíveis e auditáveis |
-| Qualidade | unittest/pytest + GitHub Actions | Verifica integridade e sintaxe, sem simular treino GPU |
+| Parte do projeto | Ferramentas |
+|---|---|
+| Modelo de linguagem | Qwen2.5-0.5B-Instruct |
+| Fine-tuning | Python, PyTorch, Transformers, PEFT/LoRA |
+| Hardware de treinamento | NVIDIA Tesla T4 (Google Colab) |
+| Frontend | Gradio |
+| Avaliação e gráficos | Python, Pandas, Matplotlib |
+| Versionamento e verificações | GitHub e GitHub Actions |
 
-**LLM executada localmente no runtime:** modelo com pesos abertos carregado diretamente no processo Python da máquina que possui GPU. Não é uma API remota de terceiros. No Colab, a máquina é hospedada na nuvem do Google — não no notebook pessoal do aluno.
+O modelo roda diretamente no processo Python do ambiente Colab, sem depender de uma API comercial para gerar as respostas.
 
-## Dataset e divisão
+## Dataset
 
-| Arquivo | Registros | Objetivo |
+Criamos uma base com **128 exemplos sintéticos** de erros Python, distribuídos da seguinte forma:
+
+| Conjunto | Quantidade | Finalidade |
 |---|---:|---|
-| `data/train.jsonl` | 96 | Treinar o adapter LoRA |
-| `data/val.jsonl` | 16 | Selecionar/validar checkpoints |
-| `data/test.jsonl` | 16 | Medir respostas das três variantes |
+| [Treinamento](data/train.jsonl) | 96 | Ajustar os parâmetros LoRA |
+| [Validação](data/val.jsonl) | 16 | Acompanhar o treinamento e selecionar checkpoints |
+| [Teste](data/test.jsonl) | 16 | Comparar os modelos usando perguntas reservadas |
 
-**Total: 128 exemplos sintéticos**, cobrindo 16 padrões de erros Python. Os prompts e IDs não se repetem entre splits. Como os exemplos compartilham padrões, os resultados não demonstram capacidade generalista em códigos desconhecidos. Veja [Metodologia](docs/METODOLOGIA.md).
+Os exemplos abrangem problemas como `NameError`, `TypeError`, `IndexError`, `KeyError`, `ValueError`, `ZeroDivisionError` e outros erros comuns. O dataset foi criado para o escopo da atividade; os padrões entre os conjuntos são semelhantes, o que limita a avaliação de generalização para novos cenários.
 
-## Plano dos experimentos
+## Treinamento e hiperparâmetros
 
-| Variante | Learning rate | Épocas | LoRA r | Batch | GPU |
-|---|---:|---:|---:|---:|---|
-| Original (baseline) | — | — | — | — | CUDA obrigatória |
-| A | 0.0002 | 2 | 8 | 2 | CUDA obrigatória |
-| B | 0.00005 | 3 | 16 | 2 | CUDA obrigatória |
+Foram feitos dois experimentos de fine-tuning LoRA com a mesma base de treinamento e seed 42:
 
-Avaliação com temperatura `0` para reduzir aleatoriedade. Métricas: taxa do formato esperado, recuperação de palavras-chave, taxa de acerto de todos os termos e latência. São **métricas auxiliares**, não substituem análise qualitativa das respostas.
+| Configuração | Learning rate | Épocas | LoRA rank | Batch size | Acúmulo |
+|---|---:|---:|---:|---:|---:|
+| Modelo original | — | — | — | — | — |
+| Experimento A | 0.0002 | 2 | 8 | 2 | 4 |
+| Experimento B | 0.00005 | 3 | 16 | 2 | 4 |
 
-## Executar no terminal (ambiente CUDA)
+Os treinamentos foram executados na Tesla T4, com duração registrada de **56,87 s** para A e **91,37 s** para B. Os detalhes dos treinos estão em [A](evidences/experiment_a_training.json) e [B](evidences/experiment_b_training.json); os gráficos de perda estão na pasta [evidences](evidences/).
 
-~~~bash
+## Avaliação dos modelos
+
+Os três modelos responderam às mesmas **16 perguntas de teste**, com temperatura igual a zero na avaliação automatizada. As métricas principais foram:
+
+| Métrica | Original | LoRA A | LoRA B |
+|---|---:|---:|---:|
+| Respostas com o formato solicitado | 43,75% | 100% | 100% |
+| Recall médio de palavras-chave | 75% | 68,75% | 75% |
+| Respostas com todos os termos esperados | 56,25% | 50% | 62,5% |
+
+![Comparação dos resultados dos modelos](evidences/comparison.svg)
+
+Os dois modelos ajustados passaram a seguir melhor o formato de resposta solicitado. Por outro lado, **as métricas de palavras-chave não demonstram uma melhoria consistente na qualidade técnica das correções**. A análise de respostas identificou erros em alguns casos, como `IndexError` e `AttributeError`.
+
+Isso mostra a importância de combinar métricas automáticas com a leitura do código gerado. A avaliação detalhada, incluindo exemplos de acertos e falhas, está em [Resultados dos experimentos](docs/RESULTADOS_REAIS.md).
+
+## Interface Gradio
+
+O frontend permite informar um erro Python, ajustar a temperatura e o limite de tokens e conversar com a LLM. Também é possível alternar entre o modelo original e o modelo ajustado, quando o adaptador LoRA está disponível.
+
+| Interface com resposta | Treinamento no Colab |
+|---|---|
+| ![Teste da interface Gradio](evidences/screenshots/02_frontend_nameerror.png) | ![Treinamento LoRA A na GPU](evidences/screenshots/06_treinamento_lora_A_t4.png) |
+
+[Mais capturas da aplicação e dos experimentos](evidences/screenshots/)
+
+## Como executar
+
+O fluxo completo está no notebook:
+
+**[Abrir o CP2/CP3 no Google Colab](https://colab.research.google.com/github/GuilhermeSSantos2004/GenerativeAI-Engineering/blob/main/notebooks/CP2_CP3_Colab.ipynb)**
+
+1. Abra o notebook e selecione um ambiente de execução com **GPU**.
+2. Execute as células na sequência: verificação CUDA, instalação das dependências, avaliação do modelo original e treinamentos A e B.
+3. Compare as respostas, gere os gráficos e salve os resultados.
+4. Execute a última célula para iniciar o frontend Gradio. O link público gerado é temporário.
+
+Para executar os scripts a partir do terminal de um ambiente com GPU CUDA e PyTorch configurados:
+
+```bash
 python -m pip install -r requirements.txt
 python -m pytest -q tests
 python scripts/check_gpu.py --output results/gpu.json
+
 python -m src.evaluate --output results/baseline.json
+
 python -m src.train --output-dir outputs/experiment_a --learning-rate 0.0002 --epochs 2 --lora-r 8
 python -m src.evaluate --adapter outputs/experiment_a/final_adapter --output results/experiment_a.json
+
 python -m src.train --output-dir outputs/experiment_b --learning-rate 0.00005 --epochs 3 --lora-r 16
 python -m src.evaluate --adapter outputs/experiment_b/final_adapter --output results/experiment_b.json
+
 python -m src.report --inputs results/baseline.json results/experiment_a.json results/experiment_b.json
-python scripts/export_evidence.py --strict
-python scripts/build_markdown_report.py
-python -m src.ui --adapter outputs/experiment_a/final_adapter --share
-~~~
+python -m src.ui --adapter outputs/experiment_a/final_adapter
+```
 
-`--share` é para o Colab, gera uma URL temporária pública (não use prompts confidenciais). Em ambiente local remova `--share` e acesse `http://localhost:7860`.
+No Google Colab, o Gradio pode ser aberto diretamente pela última célula do notebook. As GPUs do plano gratuito estão sujeitas à disponibilidade.
 
-## Estrutura do repositório
+## Organização do repositório
 
-~~~text
+```text
 GenerativeAI-Engineering/
-├── notebooks/CP2_CP3_Colab.ipynb     # Roteiro principal executável
-├── data/{train,val,test}.jsonl      # Base sintética versionada
-├── src/
-│   ├── common.py                   # Prompt, dataset e inferência
-│   ├── train.py                    # Fine-tuning LoRA na GPU
-│   ├── evaluate.py                 # Baseline e adapters em teste
-│   ├── report.py                   # Gráfico e tabela comparativos
-│   └── ui.py                       # Chat Gradio
-├── scripts/
-│   ├── check_gpu.py                # GPU e CUDA reais
-│   ├── export_evidence.py          # Cópia de resultados reais
-│   └── build_markdown_report.py    # Relatório com medições reais
-├── tests/test_project.py           # Testes automáticos dos dados
-├── docs/                           # Metodologia, execução, entrega, grupo
-├── evidences/                      # Resultados e prints após a execução
-├── .github/workflows/quality.yml   # Integração contínua (CPU)
-└── requirements.txt
-~~~
+├── data/             # Treinamento, validação e teste
+├── notebooks/        # Execução completa no Google Colab
+├── src/              # Treinamento LoRA, avaliação e interface Gradio
+├── scripts/          # Verificação da GPU e exportação de relatórios
+├── tests/            # Testes de integridade dos dados
+├── evidences/        # Métricas, respostas, gráficos e capturas
+├── docs/             # Metodologia e documentação da atividade
+├── requirements.txt
+└── README.md
+```
 
-## Resultados verificados do treinamento na Tesla T4 (15/10/2026)
+## Documentação
 
-![Comparação real das métricas de texto: baseline, LoRA A e LoRA B](evidences/comparison.svg)
+- [Metodologia e configuração dos experimentos](docs/METODOLOGIA.md)
+- [Resultados e análise das respostas](docs/RESULTADOS_REAIS.md)
+- [Evidências e capturas de tela](evidences/README.md)
+- [Guia de execução no Colab e no VS Code](docs/EXECUCAO.md)
+- [Checklist da atividade](docs/ENTREGA.md)
+- [Integrantes e RMs](docs/GRUPO.md)
 
-| Indicador | Modelo original | LoRA A | LoRA B |
-|---|---:|---:|---:|
-| Formato com as três seções solicitadas | 43,75% | 100% | 100% |
-| Recall de palavras-chave | 75% | 68,75% | 75% |
-| Todas as palavras-chave | 56,25% | 50% | 62,5% |
-
-**Limitações:** os valores representam métricas textuais auxiliares calculadas sobre **16 testes sintéticos reservados**, não acerto semântico. As capturas Gradio também identificaram correções incorretas em certos casos (especialmente IndexError). [Análise técnica e erros observados](docs/RESULTADOS_REAIS.md) · [GPU real](evidences/gpu.json) · [Métricas por teste](evidences/per_case_scores.csv) · [Treinamento A](evidences/experiment_a_training.json) · [Treinamento B](evidences/experiment_b_training.json).
-
-## Capturas reais de execução e frontend
-
-As **9 imagens PNG originais mais a captura do VS Code (em WebP sem perdas)** enviadas pelo grupo estão organizadas em [evidences/screenshots/](evidences/screenshots/) e descritas no [índice das evidências](evidences/README.md). Algumas correções sugeridas pela LLM são imperfeitas; isso está documentado na avaliação qualitativa.
-
-| Execução dos experimentos em GPU Tesla T4 | Frontend Gradio com prompt e resposta |
-|---|---|
-| ![Comparação no Colab e painel Tesla T4](evidences/screenshots/01_colab_comparacao_e_gpu_t4.png) | ![Gradio respondendo ao teste NameError](evidences/screenshots/02_frontend_nameerror.png) |
-
-Também existem prints dos treinamentos A/B concluídos, dos erros IndexError, ZeroDivisionError e ValueError, e de um teste complementar.
-
-**Print obrigatório do VS Code entregue:** ![VS Code exibindo Tesla T4, CUDA True e tensor cuda:0](evidences/screenshots/10_gpu_vscode_tesla_t4.webp)
-
-A GPU Tesla T4 exibida pertence ao runtime remoto do **Google Colab**, não ao notebook físico dos integrantes. A captura comprova CUDA no ambiente executado pelo VS Code; a tabela do `nvidia-smi` não aparece inteira, mas a chamada encerrou com `returncode=0` e a GPU/VRAM estão visíveis.
-
-## Correspondência com os itens da atividade
-
-| Exigência | Arquivo/solução | Situação |
-|---|---|---|
-| Selecionar LLM | Qwen2.5-0.5B-Instruct | Definido |
-| Resolver problema específico | Diagnóstico de erros Python | Definido |
-| Treinar localmente a LLM | `src/train.py` e notebook Colab | **Executado** na Tesla T4; métricas disponíveis |
-| Testar diferentes parâmetros | Experimentos A/B | **Executados**, parâmetros e losses registrados |
-| Avaliar respostas | `src/evaluate.py`, `src/report.py` | **Executado** em 16 testes; erros qualitativos reconhecidos |
-| Realizar testes usando GPU | `scripts/check_gpu.py`, verificações CUDA | **Executado** na T4; `evidences/gpu.json` |
-| Criar frontend para prompts | `src/ui.py` (Gradio) | **Executado**; screenshots originais publicados em `evidences/screenshots/` |
-| Capturar GPU no VS Code | [Captura original sem perda visual](evidences/screenshots/10_gpu_vscode_tesla_t4.webp) | **Concluído**: VS Code mostra CUDA True, Tesla T4 e tensor cuda:0 |
-| Documentar código no GitHub | README, docs, fontes, notebooks e dataset | **Publicado, incluindo os nove PNGs e JSONs detalhados** |
-| Grupo 4–5 pessoas | [Integrantes confirmados](docs/GRUPO.md) | **5 pessoas confirmadas, turma 4ESPX** |
-
-## Documentação e evidências
-
-- [Como executar no Colab e no VS Code](docs/EXECUCAO.md)
-- [Metodologia e limitações](docs/METODOLOGIA.md)
-- [Resultados reais da Tesla T4 e auditoria das respostas](docs/RESULTADOS_REAIS.md)
-- [Checklist de entrega](docs/ENTREGA.md)
-- [Auditoria final — o que foi atendido, o que comprova e limitações](docs/AUDITORIA_FINAL.md)
-- [Integrantes e RMs completos — turma 4ESPX](docs/GRUPO.md)
-- [Evidências e resultados](evidences/README.md)
-
-Os nove prints originais do Colab/Gradio, o print adicional do VS Code, todas as 48 respostas de avaliação em JSON, métricas, históricos de treino e gráficos de loss já estão publicados. **Não invente outputs ou estatísticas.**
+O código, o dataset e os resultados dos experimentos estão versionados neste repositório. Os pesos dos adaptadores LoRA foram exportados separadamente no arquivo de resultados da execução.
