@@ -4,7 +4,7 @@
 
 **Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Turma: 4ESPX**  |  **Grupo:** 5 integrantes
 
-> **Status atualizado em 15/10/2026:** fine-tuning LoRA A/B, baseline e inferências **executados realmente na GPU Tesla T4 do Google Colab**; métricas e gráfico publicados em `evidences/`. Nove capturas reais (incluindo gráfico original) do navegador Colab/Gradio foram **publicadas no GitHub**, em `evidences/screenshots/`. **A captura da GPU dentro do VS Code ainda não foi enviada.** Não há métricas fictícias.
+> **Status atualizado em 15/10/2026:** fine-tuning LoRA A/B, baseline e inferências **executados realmente na GPU Tesla T4 do Google Colab**; métricas e gráfico publicados em `evidences/`. Nove capturas reais (incluindo gráfico original) do navegador Colab/Gradio foram **publicadas no GitHub**, em `evidences/screenshots/`. **Print real da GPU dentro do VS Code também publicado, confirmando CUDA e Tesla T4.** Não há métricas fictícias.
 
 ## Execute o projeto no Google Colab (GPU gratuita)
 
@@ -130,7 +130,7 @@ GenerativeAI-Engineering/
 
 ## Capturas reais de execução e frontend
 
-As **9 imagens PNG originais** enviadas pelo grupo estão organizadas em [evidences/screenshots/](evidences/screenshots/) e descritas no [índice das evidências](evidences/README.md). Algumas correções sugeridas pela LLM são imperfeitas; isso está documentado na avaliação qualitativa.
+As **9 imagens PNG originais mais a captura do VS Code (em WebP sem perdas)** enviadas pelo grupo estão organizadas em [evidences/screenshots/](evidences/screenshots/) e descritas no [índice das evidências](evidences/README.md). Algumas correções sugeridas pela LLM são imperfeitas; isso está documentado na avaliação qualitativa.
 
 | Execução dos experimentos em GPU Tesla T4 | Frontend Gradio com prompt e resposta |
 |---|---|
@@ -138,7 +138,9 @@ As **9 imagens PNG originais** enviadas pelo grupo estão organizadas em [eviden
 
 Também existem prints dos treinamentos A/B concluídos, dos erros IndexError, ZeroDivisionError e ValueError, e de um teste complementar.
 
-**Pendência literal do enunciado:** a captura da GPU **dentro do VS Code** ainda não foi apresentada. Os prints com Colab aberto no navegador demonstram GPU, mas não substituem esse requisito.
+**Print obrigatório do VS Code entregue:** ![VS Code exibindo Tesla T4, CUDA True e tensor cuda:0](evidences/screenshots/10_gpu_vscode_tesla_t4.webp)
+
+A GPU Tesla T4 exibida pertence ao runtime remoto do **Google Colab**, não ao notebook físico dos integrantes. A captura comprova CUDA no ambiente executado pelo VS Code; a tabela do `nvidia-smi` não aparece inteira, mas a chamada encerrou com `returncode=0` e a GPU/VRAM estão visíveis.
 
 ## Correspondência com os itens da atividade
 
@@ -151,7 +153,7 @@ Também existem prints dos treinamentos A/B concluídos, dos erros IndexError, Z
 | Avaliar respostas | `src/evaluate.py`, `src/report.py` | **Executado** em 16 testes; erros qualitativos reconhecidos |
 | Realizar testes usando GPU | `scripts/check_gpu.py`, verificações CUDA | **Executado** na T4; `evidences/gpu.json` |
 | Criar frontend para prompts | `src/ui.py` (Gradio) | **Executado**; screenshots originais publicados em `evidences/screenshots/` |
-| Capturar GPU no VS Code | [Guia de execução](docs/EXECUCAO.md) | Pendente de print real |
+| Capturar GPU no VS Code | [Captura original sem perda visual](evidences/screenshots/10_gpu_vscode_tesla_t4.webp) | **Concluído**: VS Code mostra CUDA True, Tesla T4 e tensor cuda:0 |
 | Documentar código no GitHub | README, docs, fontes, notebooks e dataset | **Publicado, incluindo os nove PNGs e JSONs detalhados** |
 | Grupo 4–5 pessoas | [Integrantes confirmados](docs/GRUPO.md) | **5 pessoas confirmadas, turma 4ESPX** |
 
@@ -164,4 +166,4 @@ Também existem prints dos treinamentos A/B concluídos, dos erros IndexError, Z
 - [Integrantes (verificar)](docs/GRUPO.md)
 - [Evidências e resultados](evidences/README.md)
 
-Os nove prints originais, todas as 48 respostas de avaliação em JSON, métricas, históricos de treino e gráficos de loss já estão publicados. Resta especificamente a captura solicitada **dentro do VS Code**. **Não invente outputs ou estatísticas.**
+Os nove prints originais do Colab/Gradio, o print adicional do VS Code, todas as 48 respostas de avaliação em JSON, métricas, históricos de treino e gráficos de loss já estão publicados. **Não invente outputs ou estatísticas.**
