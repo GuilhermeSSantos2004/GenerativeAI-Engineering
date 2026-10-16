@@ -1,6 +1,6 @@
 # Resultados reais — execução de 15/10/2026
 
-> Fonte dos números: `CP2_CP3_resultados_reais.zip` exportado após execução real em Google Colab. Os arquivos `baseline.json`, `experiment_a.json`, `experiment_b.json`, históricos e métricas foram **publicados e conferidos em [`evidences/`](../evidences/)**. O [print do VS Code com CUDA e Tesla T4](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) também está publicado. A análise qualitativa abaixo registra limitações reais, não constitui revisão humana exaustiva.
+Os dados deste relatório foram obtidos no treinamento realizado em 15/10/2026 com a GPU Tesla T4 do Google Colab. O conjunto de resultados inclui os [arquivos JSON das respostas](../evidences/), os históricos de treinamento e a [captura do VS Code](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp).
 
 ## Hardware e execução
 
@@ -57,14 +57,8 @@ O experimento A também erra a correção de **AttributeError-7**, repetindo `te
 
 O projeto implementa e executa fine-tuning LoRA verdadeiro em GPU CUDA com dois conjuntos de hiperparâmetros. A comparação mostra ganho robusto em **estrutura** de resposta e resultados mistos em **presença de palavras-chave**. Não há evidência suficiente para afirmar melhora geral no diagnóstico correto de erros Python. Recomenda-se mais dados reais e variados, validação executável das correções, anotação humana e treino/teste com padrões distintos.
 
-## Evidências publicadas e recomendações futuras
+## Arquivos e próximos aprimoramentos
 
-- [x] JSONs completos e resultados experimentais reais: [evidences/](../evidences/).
-- [x] GPU CUDA no VS Code, Tesla T4, memória e tensor `cuda:0`: [captura do editor](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp).
-- [x] Frontend Gradio em funcionamento: [capturas](../evidences/screenshots/).
-- [x] Fine-tunings A/B, históricos de loss e comparação final: [resultados](../evidences/).
-- [x] Grupo confirmado, nomes completos, RMs e turma 4ESPX: [integrantes](GRUPO.md).
+Os [resultados completos](../evidences/), as [imagens do treinamento e da interface](../evidences/screenshots/) e a [lista dos integrantes](GRUPO.md) estão disponíveis neste repositório. Os arquivos dos adaptadores LoRA (`adapter_model.safetensors`) foram exportados no ZIP de resultados, mantido separadamente.
 
-**Recomendação metodológica (não é pendência da rubrica):** ampliar e diversificar exemplos de erro Python, verificar correções por testes executáveis e repetir experimentos com uma variável alterada por vez e múltiplas seeds. O modelo não demonstrou precisão técnica de 100%.
-
-**Arquivos de pesos:** os dois arquivos de adapter LoRA treinados (`adapter_model.safetensors`) foram exportados no ZIP de resultados preservado pelo grupo; o repositório guarda os scripts e os logs, mas não versiona os pesos de modelos.
+Como continuidade, seria útil treinar com mais exemplos de problemas reais, executar testes automatizados sobre o código sugerido e comparar hiperparâmetros alterando apenas uma variável por experimento. Essas mudanças permitiriam medir a evolução do modelo com mais segurança.
