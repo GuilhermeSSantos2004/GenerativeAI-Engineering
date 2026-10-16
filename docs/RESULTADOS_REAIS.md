@@ -1,6 +1,6 @@
 # Resultados reais — execução de 15/10/2026
 
-> Fonte dos números: `CP2_CP3_resultados_reais.zip` gerado pelo notebook Colab executado pelo integrante. As saídas JSON da execução devem ser publicadas em `evidences/` para tornar os dados auditáveis. Este documento **não** implica que os prints GPU no VS Code ou a revisão manual completa já tenham sido concluídos.
+> Fonte dos números: `CP2_CP3_resultados_reais.zip` exportado após execução real em Google Colab. Os arquivos `baseline.json`, `experiment_a.json`, `experiment_b.json`, históricos e métricas foram **publicados e conferidos em [`evidences/`](../evidences/)**. O [print do VS Code com CUDA e Tesla T4](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp) também está publicado. A análise qualitativa abaixo registra limitações reais, não constitui revisão humana exaustiva.
 
 ## Hardware e execução
 
@@ -44,7 +44,7 @@ As perdas pertencem a execuções com **quantidades diferentes de épocas e hipe
 
 ## Auditoria qualitativa: limitações concretas das respostas geradas
 
-Algumas saídas do arquivo `results/experiment_b.json` demonstram que **formato correto não é igual a código executável correto**:
+Algumas saídas do arquivo [`evidences/experiment_b.json`](../evidences/experiment_b.json) demonstram que **formato correto não é igual a código executável correto**:
 
 1. **IndexError-7:** o modelo B sugere alterar uma variável com nome acentuado (`números`) e depois acessar `numeros[11]`; essa proposta pode gerar `NameError` e não resolve de forma válida o índice fora do intervalo.
 2. **AttributeError-7:** apesar de mencionar que `None` não tem `strip()`, o código que sugere contém novamente `texto = None; print(texto.strip())`, reproduzindo o erro original.
@@ -57,10 +57,14 @@ O experimento A também erra a correção de **AttributeError-7**, repetindo `te
 
 O projeto implementa e executa fine-tuning LoRA verdadeiro em GPU CUDA com dois conjuntos de hiperparâmetros. A comparação mostra ganho robusto em **estrutura** de resposta e resultados mistos em **presença de palavras-chave**. Não há evidência suficiente para afirmar melhora geral no diagnóstico correto de erros Python. Recomenda-se mais dados reais e variados, validação executável das correções, anotação humana e treino/teste com padrões distintos.
 
-## Evidências faltantes e próximos passos
+## Evidências publicadas e recomendações futuras
 
-- [ ] Publicar os JSON/CSV/PNG **reais** presentes no ZIP em `evidences/` no GitHub.
-- [ ] Captura de CUDA/Tesla T4 e `nvidia-smi` **dentro do VS Code**, conforme o enunciado.
-- [ ] Capturas do frontend Gradio, com prompts reais e respostas do modelo treinado.
-- [ ] Capturas de treinamento A/B e comparação final; arquivos de loss e métricas estão no ZIP.
-- [ ] Confirmar turma, nomes e RMs dos cinco integrantes.
+- [x] JSONs completos e resultados experimentais reais: [evidences/](../evidences/).
+- [x] GPU CUDA no VS Code, Tesla T4, memória e tensor `cuda:0`: [captura do editor](../evidences/screenshots/10_gpu_vscode_tesla_t4.webp).
+- [x] Frontend Gradio em funcionamento: [capturas](../evidences/screenshots/).
+- [x] Fine-tunings A/B, históricos de loss e comparação final: [resultados](../evidences/).
+- [x] Grupo confirmado, nomes completos, RMs e turma 4ESPX: [integrantes](GRUPO.md).
+
+**Recomendação metodológica (não é pendência da rubrica):** ampliar e diversificar exemplos de erro Python, verificar correções por testes executáveis e repetir experimentos com uma variável alterada por vez e múltiplas seeds. O modelo não demonstrou precisão técnica de 100%.
+
+**Arquivos de pesos:** os dois arquivos de adapter LoRA treinados (`adapter_model.safetensors`) foram exportados no ZIP de resultados preservado pelo grupo; o repositório guarda os scripts e os logs, mas não versiona os pesos de modelos.
