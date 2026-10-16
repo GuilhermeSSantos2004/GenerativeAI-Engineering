@@ -1,5 +1,17 @@
 # CP2 / CP3 — Generative AI for Engineering
 
+**Turma:** 4ESPX  |  **Grupo:** 5 integrantes  |  **Professor:** Francisco Elanio
+
+## Integrantes e RMs
+
+| Integrante | RM |
+|---|---|
+| Guilherme Silva dos Santos | 551168 |
+| Enricco Rossi de Souza Carvalho Miranda | 551717 |
+| Gabriel Marquez Trevisan | 99227 |
+| Danilo Urze Aldred | 99465 |
+| Laura Claro Mathias | 98747 |
+
 **Projeto:** Python Debug LLM — Assistente de diagnóstico e correção de erros em Python
 
 **Disciplina:** Generative AI for Engineering  |  **Entrega:** 15/10/2026, 23h59  |  **Turma: 4ESPX**  |  **Grupo:** 5 integrantes
@@ -163,7 +175,7 @@ A GPU Tesla T4 exibida pertence ao runtime remoto do **Google Colab**, não ao n
 - [Metodologia e limitações](docs/METODOLOGIA.md)
 - [Resultados reais da Tesla T4 e auditoria das respostas](docs/RESULTADOS_REAIS.md)
 - [Checklist de entrega](docs/ENTREGA.md)
-- [Integrantes (verificar)](docs/GRUPO.md)
+- [Integrantes e RMs completos — turma 4ESPX](docs/GRUPO.md)
 - [Evidências e resultados](evidences/README.md)
 
 Os nove prints originais do Colab/Gradio, o print adicional do VS Code, todas as 48 respostas de avaliação em JSON, métricas, históricos de treino e gráficos de loss já estão publicados. **Não invente outputs ou estatísticas.**
